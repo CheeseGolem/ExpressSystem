@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="Express.OPPortal.Admin" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminPage.Master.cs" Inherits="Express.OPPortal.AdminPage" %>
 
 <!DOCTYPE html>
 
@@ -80,7 +80,7 @@
             <!-- left, vertical navbar -->
             <div class="col-md-2 bootstrap-admin-col-left">
                 <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side"> 
-                    <li module="UserInfo" onclick="javascript:location.href='/UserInfo/List.aspx'">
+                    <li module="Admin" onclick="javascript:location.href='/Admin/List.aspx'">
                         <a><i class="glyphicon glyphicon-chevron-right"></i>用户管理</a>
                     </li>
                     <li module="ExpressInfo" onclick="javascript:location.href='/ExpressInfo/List.aspx'">
@@ -100,7 +100,7 @@
                 <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <div class="text-muted bootstrap-admin-box-title">标题</div>
+                            <div class="text-muted bootstrap-admin-box-title">快递管理</div>
                         </div>
                         <div class="bootstrap-admin-panel-content text-muted" style="min-height: 600px;">
                             <form id="form1" runat="server">
@@ -135,14 +135,6 @@
         var module = '<%=base.module%>';
         var li = $('li[module="' + module + '"]');
         li.addClass("active");
-
-        //$('li[module=Index]').removeClass("active");
-
-        //li.css({
-        //    backgroundColor: "#00AFE4",
-        //    color: "white",
-        //});
-
 
         //页面高度自适应
 

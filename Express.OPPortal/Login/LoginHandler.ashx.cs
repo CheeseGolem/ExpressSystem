@@ -46,9 +46,9 @@ namespace Express.OPPortal.Ajax
                 AjaxHelper.WriteErrorJson("验证码不匹配");
             }
 
-            UserInfoBLL bllUserInfo = new UserInfoBLL();
+            AdminBLL bllAdmin = new AdminBLL();
             //4.0 账户是否存在
-            UserInfo model = bllUserInfo.GetModelByUsername(strUsername);
+            Admin model = bllAdmin.GetModelByUsername(strUsername);
             if (model == null)
             {
                 AjaxHelper.WriteErrorJson("用户名不存在");
@@ -83,7 +83,7 @@ namespace Express.OPPortal.Ajax
         /// 生成Cookie
         /// </summary>
         /// <param name="model"></param>
-        private void GenerateCookie(UserInfo model)
+        private void GenerateCookie(Admin model)
         {
             HttpCookie hcUserId = new HttpCookie(Key.USER_ID);
             hcUserId.Value = CryptoHelper.TripleDES_Encrypt(model.UserId.ToString(), Key.COOKIE_KEY);//3DES加密

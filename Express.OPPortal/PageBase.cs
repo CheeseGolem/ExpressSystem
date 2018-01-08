@@ -55,8 +55,8 @@ namespace Express.OPPortal
             }
 
             //通过验证，根据UserId从数据库获取用户信息
-            UserInfoBLL bllUserInfo = new UserInfoBLL();
-            Express.Model.UserInfo model = bllUserInfo.GetModel(Convert.ToInt32(strUserId));
+            AdminBLL bllAdmin = new AdminBLL();
+            Express.Model.Admin model = bllAdmin.GetModel(Convert.ToInt32(strUserId));
             if (model == null)
             {
                 RedirectLoginPage();

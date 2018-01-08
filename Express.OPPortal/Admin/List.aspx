@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="Express.OPPortal.UserInfo.List" ClientIDMode="Static" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPage.Master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="Express.OPPortal.Admin.List" ClientIDMode="Static" %>
 
 <%@ Import Namespace="Express.Common" %>
 <%@ Import Namespace="Express.Model" %>
@@ -47,7 +47,7 @@
         </div>
     </div>
     <%-- 新增按钮 跳转页面 --%>
-    <input type="button" class="btn btn-primary" value="新增用户" onclick="javascript: location.href = '/UserInfo/Edit.aspx'" style="margin: 5px;" />
+    <input type="button" class="btn btn-primary" value="新增用户" onclick="javascript: location.href = '/Admin/Edit.aspx'" style="margin: 5px;" />
 
     <table class="table table-condensed table-striped table-hover">
         <tr>
@@ -60,7 +60,7 @@
             <th>创建时间</th>
             <th>操作</th>
         </tr>
-        <asp:Repeater ID="repUserInfoList" runat="server" OnItemDataBound="repUserInfoList_ItemDataBound" OnItemCommand="repUserInfoList_ItemCommand">
+        <asp:Repeater ID="repAdminList" runat="server" OnItemDataBound="repAdminList_ItemDataBound" OnItemCommand="repAdminList_ItemCommand">
             <ItemTemplate>
                 <tr>
                     <td><%#Eval("UserId")%></td>
@@ -73,7 +73,7 @@
                     </td>
                     <td><%#Eval("CreateDate")%></td>
                     <td>
-                        <a href="<%#"javascript:location.href='/UserInfo/Edit.aspx?id="+ Eval("UserId") +"'" %>">修改</a>
+                        <a href="<%#"javascript:location.href='/Admin/Edit.aspx?id="+ Eval("UserId") +"'" %>">修改</a>
                         &nbsp;
                         <asp:LinkButton ID="lbtnDel" runat="server" CommandName="Del" CommandArgument='<%#Eval("UserId")%>' OnClientClick="return confirm('确认删除吗？');">删除</asp:LinkButton>
                     </td>

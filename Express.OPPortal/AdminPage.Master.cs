@@ -11,7 +11,7 @@ namespace Express.OPPortal
     using Express.Common;
     using Express.Model;
 
-    public partial class Admin : System.Web.UI.MasterPage
+    public partial class AdminPage : System.Web.UI.MasterPage
     {
         protected string realName = string.Empty;
         protected string module = string.Empty;
@@ -19,8 +19,8 @@ namespace Express.OPPortal
         protected void Page_Load(object sender, EventArgs e)
         {
             //当前用户
-            Model.UserInfo currentUser = Session[Key.CURRENT_USER] as Model.UserInfo;
-            realName = currentUser.RealName;
+            Model.Admin currentUser = Session[Key.CURRENT_USER] as Model.Admin;
+            realName = currentUser.RealName;            
 
             //获取当前的请求链接
             string url = Request.RawUrl;//地址栏url

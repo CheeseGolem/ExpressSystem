@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace Express.OPPortal.UserInfo {
+namespace Express.OPPortal.Admin {
     
     
     public partial class Edit {
@@ -92,14 +92,5 @@ namespace Express.OPPortal.UserInfo {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblStatus;
-        
-        /// <summary>
-        /// btnCancel 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

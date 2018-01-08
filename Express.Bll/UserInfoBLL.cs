@@ -8,10 +8,10 @@ namespace Express.BLL
 	/// <summary>
 	/// 用户信息
 	/// </summary>
-	public partial class UserInfoBLL
+	public partial class AdminBLL
 	{
-		private readonly Express.Dal.UserInfoDAL dal=new Express.Dal.UserInfoDAL();
-		public UserInfoBLL()
+		private readonly Express.Dal.AdminDAL dal=new Express.Dal.AdminDAL();
+		public AdminBLL()
 		{}
 		#region  BasicMethod
 
@@ -34,7 +34,7 @@ namespace Express.BLL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public int  Add(Express.Model.UserInfo model)
+		public int  Add(Express.Model.Admin model)
 		{
 			return dal.Add(model);
 		}
@@ -42,7 +42,7 @@ namespace Express.BLL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Express.Model.UserInfo model)
+		public bool Update(Express.Model.Admin model)
 		{
 			return dal.Update(model);
 		}
@@ -66,7 +66,7 @@ namespace Express.BLL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Express.Model.UserInfo GetModel(int UserId)
+		public Express.Model.Admin GetModel(int UserId)
 		{
 			
 			return dal.GetModel(UserId);
@@ -75,10 +75,10 @@ namespace Express.BLL
 		/// <summary>
 		/// 得到一个对象实体，从缓存中
 		/// </summary>
-		public Express.Model.UserInfo GetModelByCache(int UserId)
+		public Express.Model.Admin GetModelByCache(int UserId)
 		{
 			
-			string CacheKey = "UserInfoModel-" + UserId;
+			string CacheKey = "AdminModel-" + UserId;
 			object objModel = Express.Common.DataCache.GetCache(CacheKey);
 			if (objModel == null)
 			{
@@ -93,7 +93,7 @@ namespace Express.BLL
 				}
 				catch{}
 			}
-			return (Express.Model.UserInfo)objModel;
+			return (Express.Model.Admin)objModel;
 		}
 
 		/// <summary>
@@ -113,7 +113,7 @@ namespace Express.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Express.Model.UserInfo> GetModelList(string strWhere)
+		public List<Express.Model.Admin> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -121,13 +121,13 @@ namespace Express.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Express.Model.UserInfo> DataTableToList(DataTable dt)
+		public List<Express.Model.Admin> DataTableToList(DataTable dt)
 		{
-			List<Express.Model.UserInfo> modelList = new List<Express.Model.UserInfo>();
+			List<Express.Model.Admin> modelList = new List<Express.Model.Admin>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				Express.Model.UserInfo model;
+				Express.Model.Admin model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);
@@ -179,7 +179,7 @@ namespace Express.BLL
         /// </summary>
         /// <param name="username">用户名</param>
         /// <returns>用户实体</returns>
-        public UserInfo GetModelByUsername(string username)
+        public Admin GetModelByUsername(string username)
         {
             string where = " Username='" + username + "'";
             DataSet ds = this.GetList(where);
@@ -207,7 +207,7 @@ namespace Express.BLL
             return false;
         }
 
-        public bool AddOrUpdate(UserInfo model)
+        public bool AddOrUpdate(Admin model)
         {
             if (model.UserId > 0)//修改
             {

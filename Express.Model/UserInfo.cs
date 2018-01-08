@@ -5,9 +5,9 @@ namespace Express.Model
 	/// 用户信息
 	/// </summary>
 	[Serializable]
-	public partial class UserInfo
+	public partial class Admin
 	{
-		public UserInfo()
+		public Admin()
 		{}
 		#region Model
 		private int _userid;

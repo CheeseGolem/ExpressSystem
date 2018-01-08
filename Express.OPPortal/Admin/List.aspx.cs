@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Express.OPPortal.UserInfo
+namespace Express.OPPortal.Admin
 {
     using Express.BLL;
     using Express.Model;
@@ -13,7 +13,7 @@ namespace Express.OPPortal.UserInfo
     using System.Text;
     public partial class List : PageBase
     {
-        UserInfoBLL bllUserInfo = new UserInfoBLL();
+        AdminBLL bllAdmin = new AdminBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             //绑定数据
@@ -25,14 +25,14 @@ namespace Express.OPPortal.UserInfo
 
         private void BindData()
         {
-            List<UserInfo> list = bllUserInfo.GetModelList("");//读取所有的用户数据
+            List<Admin> list = bllAdmin.GetModelList("");//读取所有的用户数据
 
             //可以赋值为 DataSet 、 DataTable 、 List<T>
-            repUserInfoList.DataSource = list;//设置数据源
-            repUserInfoList.DataBind();//绑定数据
+            repAdminList.DataSource = list;//设置数据源
+            repAdminList.DataBind();//绑定数据
         }
 
-        protected void repUserInfoList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void repAdminList_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)//AlternatingItem 间隔行
             {
@@ -61,22 +61,22 @@ namespace Express.OPPortal.UserInfo
             }
         }
 
-        protected void repUserInfoList_ItemCommand(object source, RepeaterCommandEventArgs e)
+        protected void repAdminList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             switch (e.CommandName)
             {
                 case "Del":
                     int userId = Convert.ToInt32(e.CommandArgument);
-                    DeleteUserInfo(userId);
+                    DeleteAdmin(userId);
                     break;
                 default:
                     break;
             }
         }
 
-        private void DeleteUserInfo(int userId)
+        private void DeleteAdmin(int userId)
         {
-            if (bllUserInfo.Delete(userId))
+            if (bllAdmin.Delete(userId))
             {
                 ScriptHelper.AlertRefresh("删除成功");
             }
@@ -118,9 +118,9 @@ namespace Express.OPPortal.UserInfo
             }
 
             //条件查询，重新绑定数据
-            List<UserInfo> list = bllUserInfo.GetModelList(sb.ToString());
-            repUserInfoList.DataSource = list;
-            repUserInfoList.DataBind();
+            List<Admin> list = bllAdmin.GetModelList(sb.ToString());
+            repAdminList.DataSource = list;
+            repAdminList.DataBind();
         }
     }
 }

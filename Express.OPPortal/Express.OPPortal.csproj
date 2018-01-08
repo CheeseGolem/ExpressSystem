@@ -105,17 +105,17 @@
     <Content Include="ExpressInfo\List.aspx" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="UserInfo\Edit.aspx" />
-    <Content Include="UserInfo\List.aspx" />
+    <Content Include="Admin\Edit.aspx" />
+    <Content Include="Admin\List.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.Master.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
+    <Compile Include="AdminPage.Master.cs">
+      <DependentUpon>AdminPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin.Master.designer.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
+    <Compile Include="AdminPage.Master.designer.cs">
+      <DependentUpon>AdminPage.Master</DependentUpon>
     </Compile>
     <Compile Include="BaseHandler.cs" />
     <Compile Include="ExpressInfo\List.aspx.cs">
@@ -155,23 +155,23 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserInfo\Edit.aspx.cs">
+    <Compile Include="Admin\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserInfo\Edit.aspx.designer.cs">
+    <Compile Include="Admin\Edit.aspx.designer.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserInfo\List.aspx.cs">
+    <Compile Include="Admin\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserInfo\List.aspx.designer.cs">
+    <Compile Include="Admin\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin.Master" />
+    <Content Include="AdminPage.Master" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap\css\bootstrap.css.map" />

@@ -10,7 +10,7 @@
 namespace Express.OPPortal {
     
     
-    public partial class Admin {
+    public partial class AdminPage {
         
         /// <summary>
         /// head 控件。

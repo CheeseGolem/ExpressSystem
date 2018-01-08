@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Express.OPPortal.UserInfo
+namespace Express.OPPortal.Admin
 {
     using Express.Common;
     using Express.BLL;
@@ -60,8 +60,8 @@ namespace Express.OPPortal.UserInfo
         private void BindData(int userId)
         {
             //1.0 从数据库读取数据
-            UserInfoBLL bllUserInfo = new UserInfoBLL();
-            UserInfo model = bllUserInfo.GetModel(userId);
+            AdminBLL bllAdmin = new AdminBLL();
+            Admin model = bllAdmin.GetModel(userId);
             //2.0 将数据设置到控件上
             //非空验证
             if (model == null)

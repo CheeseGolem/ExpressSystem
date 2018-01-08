@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace Express.OPPortal.UserInfo {
+namespace Express.OPPortal.Admin {
     
     
     public partial class List {
@@ -67,12 +67,12 @@ namespace Express.OPPortal.UserInfo {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// repUserInfoList 控件。
+        /// repAdminList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repUserInfoList;
+        protected global::System.Web.UI.WebControls.Repeater repAdminList;
     }
 }
