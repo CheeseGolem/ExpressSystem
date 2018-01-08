@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web;
+
+namespace YHCms.ShanXi8.Common
+{
+    /// <summary>
+    /// AJAX\u5E2E\u52A9\u7C7B
+    /// </summary>
+    public class AjaxHelper
+    {
+        /// <summary>
+        /// \u8F93\u51FAJSON
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="msg"></param>
+        /// <param name="data"></param>
+        private static void WriteJson(AjaxSatusEnum status, string msg = "", object data = null)
+        {
+            AjaxObject objAjax = new AjaxObject()
+            {
+                Status = status,
+                Msg = msg,
+                Data = data,
+            };
+            HttpContext.Current.Response.Write(JsonHelper.Serialize(objAjax));//\u5C06\u5BF9\u8C61\u8F6C\u6210JSON\u5B57\u7B26\u4E32
+            HttpContext.Current.Response.End();//\u7ED3\u675F\u54CD\u5E94 \u4E0B\u9762\u7684\u4EE3\u7801\u4E0D\u4F1A\u6267\u884C
+        }
+
+        /// <summary>
+        /// \u8F93\u51FA\u6210\u529FJSON
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="data"></param>
+        public static void WriteSuccessJson(string msg = "", object data = null)
+        {
+            WriteJson(AjaxSatusEnum.Success, msg, data);
+        }
+        /// <summary>
+        /// \u8F93\u51FA\u9519\u8BEFJSON
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="data"></param>
+        public static void WriteErrorJson(string msg, object data = null)
+        {
+            WriteJson(AjaxSatusEnum.Error, msg, data);
+        }
+        /// <summary>
+        /// \u8F93\u51FA\u672A\u767B\u5F55JSON
+        /// </summary>
+        public static void WriteNoLoginJson()
+        {
+            WriteJson(AjaxSatusEnum.NoLogin, "\u60A8\u8FD8\u672A\u767B\u5F55", null);
+        }
+    }
+}

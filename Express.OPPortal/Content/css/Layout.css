@@ -1,0 +1,90 @@
+﻿* {
+    margin:0;
+    padding:0;
+    font-family:'Microsoft YaHei';
+    font-size:14px;
+}
+
+.yh-container, .yh-container .top, .yh-container .center, .yh-container .center-left, .yh-container .center-right, .yh-container .bottom {
+    border:dashed 1px black;
+}
+
+.yh-container {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+    .yh-container .top {
+        height: 50px;
+        background-color: #00AFE4;
+    }
+        .yh-container .top .top-left {
+            float: left;
+            color: white;
+            font-size: 30px;
+            border: 1px dashed black;
+            line-height: 45px;
+        }
+
+        .yh-container .top .top-right {
+            float: right;
+            margin-top: 20px;
+            margin-right: 10px;
+            font-size: 20px;
+            border: 1px dashed black;
+        }
+
+            .yh-container .top .top-right .user {
+                color: white;
+            }
+
+    .yh-container .center, .yh-container .bottom {
+        margin: 5px;
+    }
+
+    .yh-container .center {
+        min-height: 550px;
+    }
+
+        .yh-container .center .center-left {
+            float: left;
+            width: 20%;
+            min-height: 550px;
+        }
+
+            .yh-container .center .center-left ul {
+                list-style: none; /*去除列表前的点*/
+            }
+
+                .yh-container .center .center-left ul .level1{
+                    background-color: #E1E1E1;
+                    color: #00AFE4;
+                    font-weight: bold;
+                    font-size: 20px;
+                    padding-left: 10px;
+                    line-height: 30px;
+                }
+
+                .yh-container .center .center-left ul .level2 {
+                    padding-left: 20px;
+                    font-size: 16px;
+                    line-height: 30px;
+                }
+
+                    .yh-container .center .center-left ul .level2:hover {
+                        background-color: #00AFE4;
+                        color: white;
+                        cursor: pointer;
+                    }                            
+
+        .yh-container .center .center-right {
+            float: right;
+            width: 79%;
+            min-height: 550px;
+        }
+
+    .yh-container .bottom {        
+        height: 25px;
+        text-align: center;
+        line-height: 30px;
+    }
