@@ -5,7 +5,7 @@ namespace Express.Common
 {
 	/// <summary>
 	/// web.config操作类
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) Express
 	/// </summary>
 	public sealed class ConfigHelper
 	{

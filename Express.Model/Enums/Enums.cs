@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 
 namespace Express.Model
-{
-    using Express.Common;
+{    
+    using global::Express.Common;
+
     /// <summary>
     /// 用户状态枚举
     /// </summary>

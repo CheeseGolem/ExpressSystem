@@ -10,7 +10,7 @@ namespace Express.DBUtility
 {
     /// <summary>
     /// 数据访问抽象基础类
-    /// Copyright (C) Maticsoft 
+    /// Copyright (C) Express 
     /// </summary>
     public abstract class DbHelperSQL
     {

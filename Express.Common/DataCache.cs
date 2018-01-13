@@ -5,7 +5,7 @@ namespace Express.Common
 {
 	/// <summary>
 	/// 缓存相关的操作类
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) Express
 	/// </summary>
 	public class DataCache
 	{
