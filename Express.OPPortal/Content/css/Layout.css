@@ -1,12 +1,12 @@
 ﻿* {
-    margin:0;
-    padding:0;
-    font-family:'Microsoft YaHei';
-    font-size:14px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei';
+    font-size: 14px;
 }
 
 .yh-container, .yh-container .top, .yh-container .center, .yh-container .center-left, .yh-container .center-right, .yh-container .bottom {
-    border:dashed 1px black;
+    border: dashed 1px black;
 }
 
 .yh-container {
@@ -18,6 +18,7 @@
         height: 50px;
         background-color: #00AFE4;
     }
+
         .yh-container .top .top-left {
             float: left;
             color: white;
@@ -56,7 +57,7 @@
                 list-style: none; /*去除列表前的点*/
             }
 
-                .yh-container .center .center-left ul .level1{
+                .yh-container .center .center-left ul .level1 {
                     background-color: #E1E1E1;
                     color: #00AFE4;
                     font-weight: bold;
@@ -75,7 +76,7 @@
                         background-color: #00AFE4;
                         color: white;
                         cursor: pointer;
-                    }                            
+                    }
 
         .yh-container .center .center-right {
             float: right;
@@ -83,8 +84,12 @@
             min-height: 550px;
         }
 
-    .yh-container .bottom {        
+    .yh-container .bottom {
         height: 25px;
         text-align: center;
         line-height: 30px;
     }
+
+table .form-control {
+    width: 300px;
+}

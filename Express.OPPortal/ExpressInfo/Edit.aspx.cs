@@ -1,0 +1,126 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Express.OPPortal.ExpressInfo
+{
+    using Express.BLL;
+    using Express.Common;
+    using Express.Model;
+
+    public partial class Edit : PageBase
+    {
+        Ep_ExpressBLL bllExpress = new Ep_ExpressBLL();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                //绑定快递状态
+                BindExpressStatus();
+
+                //判断新建页或编辑页
+                string strId = Request.QueryString["id"];
+                if (!string.IsNullOrWhiteSpace(strId))
+                {
+                    BindData(strId);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 绑定用户类型下拉框
+        /// </summary>
+        private void BindExpressStatus()
+        {
+            ddlStatus.Items.Add(new ListItem("未领取", "0"));
+            ddlStatus.Items.Add(new ListItem("已领取", "1"));
+            ddlStatus.Items.Add(new ListItem("已超时", "2"));
+            //设置默认选中项
+            ddlStatus.SelectedValue = "0";
+        }
+
+        /// <summary>
+        /// 绑定数据
+        /// </summary>
+        /// <param name="userId">用户编号</param>
+        private void BindData(string id)
+        {
+            //1.0 从数据库读取数据
+            Ep_ExpressBLL bllExpress = new Ep_ExpressBLL();
+            Ep_Express model = bllExpress.GetModel(id);
+
+            //2.0 将数据设置到控件上
+            //非空验证
+            if (model == null)
+            {
+                return;
+            }
+
+            txtExpressId.Text = model.ExpressId.ToString();
+            txtRemark.Text = model.Remark.ToString();
+            ddlStatus.SelectedValue = model.Status.ToString();
+
+            Ep_UserBLL bllUser = new Ep_UserBLL();
+            Ep_User modelUser = new Ep_User();
+            if (!string.IsNullOrWhiteSpace(model.UserId))
+            {
+                modelUser = bllUser.GetModel(model.UserId);
+                txtUserName.Text = modelUser.Name.ToString();
+                txtPhone.Text = modelUser.Phone.ToString();
+            }                        
+
+            ViewState["id"] = model.ID;//将原数据保存在隐藏域中
+            //viewstate 只保存ID
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            if (rfvExpressId.IsValid && rfvPhone.IsValid)
+            {
+                Ep_Express model = new Ep_Express();
+                model.ExpressId = txtExpressId.Text;
+                model.UserId = hidUserId.Value;
+                model.Remark = txtRemark.Text;
+                model.Status = Convert.ToInt32(ddlStatus.SelectedIndex);
+
+                if (ViewState["id"] != null)//修改
+                {
+                    model.ID = ViewState["id"].ToString();
+                    string[] fields = { "id", "Status", "Remark", "ArrivalTime", "", "", "", "", "" };
+                    bllExpress.Update(model, fields);
+                    ScriptHelper.AlertRedirect("更新成功", "/ExpressInfo/List.aspx");
+                }
+                else//新增
+                {
+                    model.ID = Guid.NewGuid().ToString();
+                    model.ArrivalTime = DateTime.Now;
+
+                    Ep_UserBLL bllUser = new Ep_UserBLL();
+                    Ep_User modelUser = new Ep_User();
+                    if (!bllUser.Exists(model.UserId))
+                    {
+                        try
+                        {                            
+                            modelUser.UserId = Guid.NewGuid().ToString();
+                            model.UserId = modelUser.UserId;
+                            modelUser.Phone = txtPhone.Text;
+                            bllUser.Add(modelUser);
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }                        
+                    }
+
+                    bllExpress.Add(model);
+                    ScriptHelper.AlertRedirect("添加成功", "/ExpressInfo/List.aspx");
+                }
+            }
+        }
+    }
+}

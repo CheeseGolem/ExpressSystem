@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace Express.Model
-{    
+{
     using global::Express.Common;
 
     /// <summary>
@@ -58,70 +58,25 @@ namespace Express.Model
         Show = 1,
     }
 
-    public enum CategoryType
+    /// <summary>
+    /// 快递状态
+    /// </summary>
+    public enum ExpressStatus
     {
         /// <summary>
-        /// 链接
+        /// 未接收
         /// </summary>
-        [EnumDescription("链接")]
-        Link = 1,
+        [EnumDescription("未接收")]
+        Unclaimed = 0,
         /// <summary>
-        /// 内容页
+        /// 已接收
         /// </summary>
-        [EnumDescription("内容页")]
-        ContentPage = 2,
+        [EnumDescription("已接收")]
+        Received = 1,
         /// <summary>
-        /// 新闻列表
+        /// 超时
         /// </summary>
-        [EnumDescription("新闻列表")]
-        NewsList = 3,
-        /// <summary>
-        /// 产品列表
-        /// </summary>
-        [EnumDescription("产品列表")]
-        ProductList = 4,
-    }
-
-    public enum NewsType
-    {
-        /// <summary>
-        /// 公司新闻
-        /// </summary>
-        [EnumDescription("公司新闻")]
-        CompanyNews = 9,
-        /// <summary>
-        /// 行业新闻
-        /// </summary>
-        [EnumDescription("行业新闻")]
-        IndustryNews = 10,
-        /// <summary>
-        /// 下载中心
-        /// </summary>
-        [EnumDescription("下载中心")]
-        DownloadCenter = 24,
-    }
-
-    public enum ProductType
-    {
-        /// <summary>
-        /// 数码播放器
-        /// </summary>
-        [EnumDescription("数码播放器")]
-        Player=12,
-        /// <summary>
-        /// MP3
-        /// </summary>
-        [EnumDescription("MP3")]
-        Mp3 = 13,
-        /// <summary>
-        /// MP4
-        /// </summary>
-        [EnumDescription("MP4")]
-        Mp4=14,
-        /// <summary>
-        /// GPS
-        /// </summary>
-        [EnumDescription("GPS")]
-        GPS=15
+        [EnumDescription("超时")]
+        TimeOut = 2
     }
 }

@@ -60,8 +60,8 @@ namespace Express.OPPortal.Admin
         private void BindData(int userId)
         {
             //1.0 从数据库读取数据
-            AdminBLL bllAdmin = new AdminBLL();
-            Admin model = bllAdmin.GetModel(userId);
+            Ep_AdminBLL bllAdmin = new Ep_AdminBLL();
+            Ep_Admin model = bllAdmin.GetModel(userId);
             //2.0 将数据设置到控件上
             //非空验证
             if (model == null)

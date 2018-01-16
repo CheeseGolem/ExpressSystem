@@ -19,7 +19,7 @@ namespace Express.OPPortal
         protected void Page_Load(object sender, EventArgs e)
         {
             //当前用户
-            Model.Admin currentUser = Session[Key.CURRENT_USER] as Model.Admin;
+            Ep_Admin currentUser = Session[Key.CURRENT_USER] as Ep_Admin;
             realName = currentUser.RealName;            
 
             //获取当前的请求链接

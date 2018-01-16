@@ -65,8 +65,8 @@ namespace Express.OPPortal
             }
 
             //通过验证，根据UserId从数据库获取用户信息
-            AdminBLL bllAdmin = new AdminBLL();
-            global::Express.Model.Admin model = bllAdmin.GetModel(Convert.ToInt32(strUserId));
+            Ep_AdminBLL bllAdmin = new Ep_AdminBLL();
+            Ep_Admin model = bllAdmin.GetModel(Convert.ToInt32(strUserId));
             if (model == null)
             {
                 AjaxHelper.WriteNoLoginJson();

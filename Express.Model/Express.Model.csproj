@@ -39,11 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Express.cs" />
+    <Compile Include="Ep_Admin.cs" />
+    <Compile Include="Ep_Express.cs" />
+    <Compile Include="Ep_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Express.Common\Express.Common.csproj">

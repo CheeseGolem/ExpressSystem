@@ -100,12 +100,13 @@
 
             //测试
             //console.log(postData);
+            //debugger;
             //return false;
-
+            
 
             //3.0 发送AJAX请求
             $.ajax({
-                url: '/Login/SaveUserHandler.ashx',
+                url: 'SaveUserHandler.ashx',
                 type: 'post',
                 dataType: 'json',
                 data: postData,

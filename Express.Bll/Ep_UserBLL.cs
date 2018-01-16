@@ -6,26 +6,26 @@ using Express.Model;
 namespace Express.BLL
 {
 	/// <summary>
-	/// Express
+	/// 用户信息
 	/// </summary>
-	public partial class ExpressBLL
-    {
-		private readonly Express.DAL.ExpressDAL dal=new Express.DAL.ExpressDAL();
-		public ExpressBLL()
+	public partial class Ep_UserBLL
+	{
+		private readonly Express.DAL.Ep_UserDAL dal=new Express.DAL.Ep_UserDAL();
+		public Ep_UserBLL()
 		{}
 		#region  BasicMethod
 		/// <summary>
 		/// 是否存在该记录
 		/// </summary>
-		public bool Exists(string ID)
+		public bool Exists(string UserId)
 		{
-			return dal.Exists(ID);
+			return dal.Exists(UserId);
 		}
 
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Express.Model.Express model)
+		public bool Add(Express.Model.Ep_User model)
 		{
 			return dal.Add(model);
 		}
@@ -33,7 +33,7 @@ namespace Express.BLL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Express.Model.Express model)
+		public bool Update(Express.Model.Ep_User model)
 		{
 			return dal.Update(model);
 		}
@@ -41,41 +41,41 @@ namespace Express.BLL
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public bool Delete(string ID)
+		public bool Delete(string UserId)
 		{
 			
-			return dal.Delete(ID);
+			return dal.Delete(UserId);
 		}
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public bool DeleteList(string IDlist )
+		public bool DeleteList(string UserIdlist )
 		{
-			return dal.DeleteList(Express.Common.PageValidate.SafeLongFilter(IDlist,0) );
+			return dal.DeleteList(Express.Common.PageValidate.SafeLongFilter(UserIdlist,0) );
 		}
 
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Express.Model.Express GetModel(string ID)
+		public Express.Model.Ep_User GetModel(string UserId)
 		{
 			
-			return dal.GetModel(ID);
+			return dal.GetModel(UserId);
 		}
 
 		/// <summary>
 		/// 得到一个对象实体，从缓存中
 		/// </summary>
-		public Express.Model.Express GetModelByCache(string ID)
+		public Express.Model.Ep_User GetModelByCache(string UserId)
 		{
 			
-			string CacheKey = "ExpressModel-" + ID;
+			string CacheKey = "Ep_UserModel-" + UserId;
 			object objModel = Express.Common.DataCache.GetCache(CacheKey);
 			if (objModel == null)
 			{
 				try
 				{
-					objModel = dal.GetModel(ID);
+					objModel = dal.GetModel(UserId);
 					if (objModel != null)
 					{
 						int ModelCache = Express.Common.ConfigHelper.GetConfigInt("ModelCache");
@@ -84,7 +84,7 @@ namespace Express.BLL
 				}
 				catch{}
 			}
-			return (Express.Model.Express)objModel;
+			return (Express.Model.Ep_User)objModel;
 		}
 
 		/// <summary>
@@ -104,7 +104,7 @@ namespace Express.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Express.Model.Express> GetModelList(string strWhere)
+		public List<Express.Model.Ep_User> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -112,13 +112,13 @@ namespace Express.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Express.Model.Express> DataTableToList(DataTable dt)
+		public List<Express.Model.Ep_User> DataTableToList(DataTable dt)
 		{
-			List<Express.Model.Express> modelList = new List<Express.Model.Express>();
+			List<Express.Model.Ep_User> modelList = new List<Express.Model.Ep_User>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				Express.Model.Express model;
+				Express.Model.Ep_User model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);

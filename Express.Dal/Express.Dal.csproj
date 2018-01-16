@@ -39,10 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminDAL.cs" />
-    <Compile Include="ExpressDAL.cs" />
+    <Compile Include="Ep_AdminDAL.cs" />
+    <Compile Include="Ep_ExpressDAL.cs" />
+    <Compile Include="Ep_UserDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Express.DBUtility\Express.DBUtility.csproj">

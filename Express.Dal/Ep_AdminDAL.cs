@@ -3,14 +3,14 @@ using System.Data;
 using System.Text;
 using System.Data.SqlClient;
 using Express.DBUtility;//Please add references
-namespace Express.Dal
+namespace Express.DAL
 {
 	/// <summary>
-	/// 数据访问类:AdminDAL
+	/// 数据访问类:Ep_AdminDAL
 	/// </summary>
-	public partial class AdminDAL
+	public partial class Ep_AdminDAL
 	{
-		public AdminDAL()
+		public Ep_AdminDAL()
 		{}
 		#region  BasicMethod
 
@@ -19,7 +19,7 @@ namespace Express.Dal
 		/// </summary>
 		public int GetMaxId()
 		{
-		return DbHelperSQL.GetMaxID("UserId", "Admin"); 
+		return DbHelperSQL.GetMaxID("UserId", "Ep_Admin"); 
 		}
 
 		/// <summary>
@@ -28,7 +28,7 @@ namespace Express.Dal
 		public bool Exists(int UserId)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select count(1) from Admin");
+			strSql.Append("select count(1) from Ep_Admin");
 			strSql.Append(" where UserId=@UserId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@UserId", SqlDbType.Int,4)
@@ -42,10 +42,10 @@ namespace Express.Dal
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public int Add(Express.Model.Admin model)
+		public int Add(Express.Model.Ep_Admin model)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("insert into Admin(");
+			strSql.Append("insert into Ep_Admin(");
 			strSql.Append("Username,Password,RealName,Phone,UserType,Status,CreateDate)");
 			strSql.Append(" values (");
 			strSql.Append("@Username,@Password,@RealName,@Phone,@UserType,@Status,@CreateDate)");
@@ -79,16 +79,17 @@ namespace Express.Dal
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Express.Model.Admin model)
+		public bool Update(Express.Model.Ep_Admin model)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("update Admin set ");
+			strSql.Append("update Ep_Admin set ");
 			strSql.Append("Username=@Username,");
 			strSql.Append("Password=@Password,");
 			strSql.Append("RealName=@RealName,");
 			strSql.Append("Phone=@Phone,");
 			strSql.Append("UserType=@UserType,");
-			strSql.Append("Status=@Status");
+			strSql.Append("Status=@Status,");
+			strSql.Append("CreateDate=@CreateDate");
 			strSql.Append(" where UserId=@UserId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@Username", SqlDbType.VarChar,16),
@@ -97,6 +98,7 @@ namespace Express.Dal
 					new SqlParameter("@Phone", SqlDbType.VarChar,15),
 					new SqlParameter("@UserType", SqlDbType.TinyInt,1),
 					new SqlParameter("@Status", SqlDbType.TinyInt,1),
+					new SqlParameter("@CreateDate", SqlDbType.DateTime),
 					new SqlParameter("@UserId", SqlDbType.Int,4)};
 			parameters[0].Value = model.Username;
 			parameters[1].Value = model.Password;
@@ -104,7 +106,8 @@ namespace Express.Dal
 			parameters[3].Value = model.Phone;
 			parameters[4].Value = model.UserType;
 			parameters[5].Value = model.Status;
-			parameters[6].Value = model.UserId;
+			parameters[6].Value = model.CreateDate;
+			parameters[7].Value = model.UserId;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -124,7 +127,7 @@ namespace Express.Dal
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("delete from Admin ");
+			strSql.Append("delete from Ep_Admin ");
 			strSql.Append(" where UserId=@UserId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@UserId", SqlDbType.Int,4)
@@ -147,7 +150,7 @@ namespace Express.Dal
 		public bool DeleteList(string UserIdlist )
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("delete from Admin ");
+			strSql.Append("delete from Ep_Admin ");
 			strSql.Append(" where UserId in ("+UserIdlist + ")  ");
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString());
 			if (rows > 0)
@@ -164,18 +167,18 @@ namespace Express.Dal
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Express.Model.Admin GetModel(int UserId)
+		public Express.Model.Ep_Admin GetModel(int UserId)
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 UserId,Username,Password,RealName,Phone,UserType,Status,CreateDate from Admin ");
+			strSql.Append("select  top 1 UserId,Username,Password,RealName,Phone,UserType,Status,CreateDate from Ep_Admin ");
 			strSql.Append(" where UserId=@UserId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@UserId", SqlDbType.Int,4)
 			};
 			parameters[0].Value = UserId;
 
-			Express.Model.Admin model=new Express.Model.Admin();
+			Express.Model.Ep_Admin model=new Express.Model.Ep_Admin();
 			DataSet ds=DbHelperSQL.Query(strSql.ToString(),parameters);
 			if(ds.Tables[0].Rows.Count>0)
 			{
@@ -191,9 +194,9 @@ namespace Express.Dal
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Express.Model.Admin DataRowToModel(DataRow row)
+		public Express.Model.Ep_Admin DataRowToModel(DataRow row)
 		{
-			Express.Model.Admin model=new Express.Model.Admin();
+			Express.Model.Ep_Admin model=new Express.Model.Ep_Admin();
 			if (row != null)
 			{
 				if(row["UserId"]!=null && row["UserId"].ToString()!="")
@@ -239,7 +242,7 @@ namespace Express.Dal
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select UserId,Username,Password,RealName,Phone,UserType,Status,CreateDate ");
-			strSql.Append(" FROM Admin ");
+			strSql.Append(" FROM Ep_Admin ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -259,7 +262,7 @@ namespace Express.Dal
 				strSql.Append(" top "+Top.ToString());
 			}
 			strSql.Append(" UserId,Username,Password,RealName,Phone,UserType,Status,CreateDate ");
-			strSql.Append(" FROM Admin ");
+			strSql.Append(" FROM Ep_Admin ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -274,7 +277,7 @@ namespace Express.Dal
 		public int GetRecordCount(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select count(1) FROM Admin ");
+			strSql.Append("select count(1) FROM Ep_Admin ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -305,7 +308,7 @@ namespace Express.Dal
 			{
 				strSql.Append("order by T.UserId desc");
 			}
-			strSql.Append(")AS Row, T.*  from Admin T ");
+			strSql.Append(")AS Row, T.*  from Ep_Admin T ");
 			if (!string.IsNullOrEmpty(strWhere.Trim()))
 			{
 				strSql.Append(" WHERE " + strWhere);
@@ -315,7 +318,7 @@ namespace Express.Dal
 			return DbHelperSQL.Query(strSql.ToString());
 		}
 
-		/*
+        /*
 		/// <summary>
 		/// 分页获取数据列表
 		/// </summary>
@@ -330,7 +333,7 @@ namespace Express.Dal
 					new SqlParameter("@OrderType", SqlDbType.Bit),
 					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
 					};
-			parameters[0].Value = "Admin";
+			parameters[0].Value = "Ep_Admin";
 			parameters[1].Value = "UserId";
 			parameters[2].Value = PageSize;
 			parameters[3].Value = PageIndex;
@@ -340,8 +343,8 @@ namespace Express.Dal
 			return DbHelperSQL.RunProcedure("UP_GetRecordByPage",parameters,"ds");
 		}*/
 
-		#endregion  BasicMethod
-		#region  ExtensionMethod
+        #endregion  BasicMethod
+        #region  ExtensionMethod
         /// <summary>
         /// 判断用户名是否存在
         /// </summary>
@@ -350,9 +353,9 @@ namespace Express.Dal
         /// <returns></returns>
         public object isExistsUsername(string username, int userId)
         {
-            string sql = "select COUNT(*) from Admin where UserId=@UserId and Username=@Username";
+            string sql = "select COUNT(*) from Ep_Admin where UserId=@UserId and Username=@Username";
 
-            SqlParameter[] ps=
+            SqlParameter[] ps =
             {
                 new SqlParameter("@Username",username),
                 new SqlParameter("@UserId",userId),
@@ -367,10 +370,10 @@ namespace Express.Dal
         /// <param name="model">用户对象</param>
         /// <param name="isUpdatePassword">是否修改密码</param>
         /// <returns></returns>
-        public bool Update(Express.Model.Admin model,bool isUpdatePassword)
+        public bool Update(Express.Model.Ep_Admin model, bool isUpdatePassword)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("Update Admin set ");
+            strSql.Append("Update Ep_Admin set ");
             strSql.Append("Username=@Username,");
             if (isUpdatePassword)
             {
@@ -407,10 +410,10 @@ namespace Express.Dal
                 newPs[newPs.Length - 1] = new SqlParameter("@Password", SqlDbType.Char, 32);
                 newPs[newPs.Length - 1].Value = model.Password;
             }
-            
+
             //返回受影响的行数
             int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), isUpdatePassword ? newPs : parameters);
-            if (rows>0)
+            if (rows > 0)
             {
                 return true;
             }
@@ -419,7 +422,7 @@ namespace Express.Dal
                 return false;
             }
         }
-		#endregion  ExtensionMethod
-	}
+        #endregion  ExtensionMethod
+    }
 }
 

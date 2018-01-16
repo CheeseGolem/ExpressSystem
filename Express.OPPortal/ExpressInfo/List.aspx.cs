@@ -8,10 +8,12 @@ using System.Web.UI.WebControls;
 namespace Express.OPPortal.ExpressInfo
 {
     using Express.BLL;
+    using Express.Common;
     using Express.Model;
     public partial class List : PageBase
     {
-        ExpressBLL bllExpress = new ExpressBLL();
+        Ep_ExpressBLL bllExpress = new Ep_ExpressBLL();
+        Ep_UserBLL bllUser = new Ep_UserBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             //绑定数据
@@ -23,7 +25,7 @@ namespace Express.OPPortal.ExpressInfo
 
         private void BindData()
         {
-            List<Express> list = bllExpress.GetModelList("");//读取所有的用户数据
+            List<Ep_Express> list = bllExpress.GetModelList("");//读取所有的用户数据
 
             //可以赋值为 DataSet 、 DataTable 、 List<T>
             repExpressList.DataSource = list;//设置数据源
@@ -32,36 +34,70 @@ namespace Express.OPPortal.ExpressInfo
 
         protected void repExpressList_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            //if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)//AlternatingItem 间隔行
-            //{
-            //    //在当前行中查询指定控件
-            //    Label lblStatus = e.Item.FindControl("lblStatus") as Label;
-            //    //获取控件中的文本
-            //    string strUserStatus = lblStatus.Text;//用户状态值
-            //    //转换枚举
-            //    UserStatus enumUserStatus = (UserStatus)Enum.Parse(typeof(UserStatus), strUserStatus);
-            //    //获取枚举描述
-            //    strUserStatus = Convert.ToInt32(strUserStatus).GetDescription<UserStatus>();
-            //    //将Label控件的文本重新赋值
-            //    lblStatus.Text = strUserStatus;
-            //    //根据用户状态设置前景色
-            //    switch (enumUserStatus)
-            //    {
-            //        case UserStatus.Disable:
-            //            lblStatus.ForeColor = System.Drawing.Color.Red;
-            //            break;
-            //        case UserStatus.Enable:
-            //            lblStatus.ForeColor = System.Drawing.Color.Green;
-            //            break;
-            //        default:
-            //            break;
-            //    }
-            //}
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)//AlternatingItem 间隔行
+            {
+                //在当前行中查询指定控件
+                Label lblStatus = e.Item.FindControl("lblStatus") as Label;
+                //获取控件中的文本
+                string strExpressStatus = lblStatus.Text;//用户状态值
+                //转换枚举
+                ExpressStatus enumExpressStatus = (ExpressStatus)Enum.Parse(typeof(ExpressStatus), strExpressStatus);
+                //获取枚举描述
+                strExpressStatus = Convert.ToInt32(strExpressStatus).GetDescription<ExpressStatus>();
+                //将Label控件的文本重新赋值
+                lblStatus.Text = strExpressStatus;
+                //根据用户状态设置前景色
+                switch (enumExpressStatus)
+                {
+                    case ExpressStatus.TimeOut:
+                        lblStatus.ForeColor = System.Drawing.Color.Red;
+                        break;
+                    case ExpressStatus.Received:
+                        lblStatus.ForeColor = System.Drawing.Color.Green;
+                        break;
+                    default:
+                        break;
+                }
+
+                //在当前行中查询指定控件
+                Label lblUserId = e.Item.FindControl("lblUserId") as Label;
+                Label lblPhone = e.Item.FindControl("lblPhone") as Label;
+                //获取控件中的文本
+                string strUserId = lblUserId.Text;
+                //将Label控件的文本重新赋值
+                if (!string.IsNullOrWhiteSpace(strUserId))
+                {
+                    Ep_User model = new Ep_User();
+                    model = bllUser.GetModel(strUserId);
+                    lblUserId.Text = model.Name.ToString();
+                    lblPhone.Text = model.Phone.ToString();
+                }                
+            }
         }
 
         protected void repExpressList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            switch (e.CommandName)
+            {
+                case "Del":
+                    string expressId = e.CommandArgument.ToString();
+                    DeleteExpress(expressId);
+                    break;
+                default:
+                    break;
+            }
+        }
 
+        private void DeleteExpress(string expressId)
+        {
+            if (bllExpress.Delete(expressId))
+            {
+                ScriptHelper.AlertRefresh("删除成功");
+            }
+            else
+            {
+                ScriptHelper.Alert("删除失败");
+            }
         }
     }
 }

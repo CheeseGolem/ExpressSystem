@@ -2,12 +2,12 @@
 namespace Express.Model
 {
 	/// <summary>
-	/// User:实体类(属性说明自动提取数据库字段的描述信息)
+	/// 用户信息
 	/// </summary>
 	[Serializable]
-	public partial class User
+	public partial class Ep_User
 	{
-		public User()
+		public Ep_User()
 		{}
 		#region Model
 		private string _userid;

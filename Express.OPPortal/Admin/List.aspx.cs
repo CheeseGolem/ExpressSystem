@@ -13,7 +13,7 @@ namespace Express.OPPortal.Admin
     using System.Text;
     public partial class List : PageBase
     {
-        AdminBLL bllAdmin = new AdminBLL();
+        Ep_AdminBLL bllAdmin = new Ep_AdminBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             //绑定数据
@@ -25,7 +25,7 @@ namespace Express.OPPortal.Admin
 
         private void BindData()
         {
-            List<Admin> list = bllAdmin.GetModelList("");//读取所有的用户数据
+            List<Ep_Admin> list = bllAdmin.GetModelList("");//读取所有的用户数据
 
             //可以赋值为 DataSet 、 DataTable 、 List<T>
             repAdminList.DataSource = list;//设置数据源
@@ -118,7 +118,7 @@ namespace Express.OPPortal.Admin
             }
 
             //条件查询，重新绑定数据
-            List<Admin> list = bllAdmin.GetModelList(sb.ToString());
+            List<Ep_Admin> list = bllAdmin.GetModelList(sb.ToString());
             repAdminList.DataSource = list;
             repAdminList.DataBind();
         }

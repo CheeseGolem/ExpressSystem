@@ -102,6 +102,7 @@
     <Content Include="Content\My97DatePicker\开发包\skin\whyGreen\bg.jpg" />
     <Content Include="Content\My97DatePicker\开发包\skin\whyGreen\datepicker.css" />
     <Content Include="Content\My97DatePicker\开发包\skin\whyGreen\img.gif" />
+    <Content Include="ExpressInfo\Edit.aspx" />
     <Content Include="ExpressInfo\List.aspx" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
@@ -118,6 +119,16 @@
       <DependentUpon>AdminPage.Master</DependentUpon>
     </Compile>
     <Compile Include="BaseHandler.cs" />
+    <Compile Include="ExpressInfo\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExpressInfo\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExpressInfo\ExpressInfo.ashx.cs">
+      <DependentUpon>ExpressInfo.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ExpressInfo\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -148,7 +159,7 @@
     <Compile Include="Login\LoginoutHandler.ashx.cs">
       <DependentUpon>LoginoutHandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Login\SaveUserHandler.ashx.cs">
+    <Compile Include="Admin\SaveUserHandler.ashx.cs">
       <DependentUpon>SaveUserHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="PageBase.cs">
@@ -182,8 +193,9 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Login\CaptchaHandler.ashx" />
     <Content Include="Login\LoginHandler.ashx" />
-    <Content Include="Login\SaveUserHandler.ashx" />
+    <Content Include="Admin\SaveUserHandler.ashx" />
     <Content Include="Login\LoginoutHandler.ashx" />
+    <Content Include="ExpressInfo\ExpressInfo.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

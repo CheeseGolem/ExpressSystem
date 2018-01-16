@@ -16,7 +16,7 @@ namespace Express.OPPortal.Ajax
     {       
         public override void SubProcessRequest()
         {
-            AdminBLL bllAdmin = new AdminBLL();
+            Ep_AdminBLL bllAdmin = new Ep_AdminBLL();
             //1.0 接收数据
             string strUserId = Context.Request.Form["UserId"];
             string strUsername = Context.Request.Form["Username"];
@@ -25,9 +25,9 @@ namespace Express.OPPortal.Ajax
             string strPhone = Context.Request.Form["Phone"];
             string strUserType = Context.Request.Form["UserType"];
             string strStatus = Context.Request.Form["Status"];
-            
+
             //非空判断
-            Admin model = new Admin();
+            Ep_Admin model = new Ep_Admin();
             model.UserId = !string.IsNullOrWhiteSpace(strUserId) ? Convert.ToInt32(strUserId) : 0;
             model.Username = !string.IsNullOrWhiteSpace(strUsername) ? strUsername : "";
             model.Password=!string.IsNullOrWhiteSpace(strUsername)?strPassword.ToUpper():"";//统一大写

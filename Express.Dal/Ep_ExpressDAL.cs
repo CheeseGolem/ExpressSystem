@@ -6,11 +6,11 @@ using Express.DBUtility;//Please add references
 namespace Express.DAL
 {
 	/// <summary>
-	/// 数据访问类:Express
+	/// 数据访问类:Ep_ExpressDAL
 	/// </summary>
-	public partial class ExpressDAL
+	public partial class Ep_ExpressDAL
 	{
-		public ExpressDAL()
+		public Ep_ExpressDAL()
 		{}
 		#region  BasicMethod
 
@@ -20,7 +20,7 @@ namespace Express.DAL
 		public bool Exists(string ID)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select count(1) from Express");
+			strSql.Append("select count(1) from Ep_Express");
 			strSql.Append(" where ID=@ID ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@ID", SqlDbType.VarChar,36)			};
@@ -33,21 +33,25 @@ namespace Express.DAL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Express.Model.Express model)
+		public bool Add(Express.Model.Ep_Express model)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("insert into Express(");
-			strSql.Append("ID,ExpressId,UserId,Sender,SendPhone,Status,Remark)");
+			strSql.Append("insert into Ep_Express(");
+			strSql.Append("ID,ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,Type,Location)");
 			strSql.Append(" values (");
-			strSql.Append("@ID,@ExpressId,@UserId,@Sender,@SendPhone,@Status,@Remark)");
+			strSql.Append("@ID,@ExpressId,@UserId,@Sender,@SendPhone,@Status,@Remark,@ArrivalTime,@GetTime,@Type,@Location)");
 			SqlParameter[] parameters = {
 					new SqlParameter("@ID", SqlDbType.VarChar,36),
 					new SqlParameter("@ExpressId", SqlDbType.VarChar,36),
 					new SqlParameter("@UserId", SqlDbType.VarChar,36),
 					new SqlParameter("@Sender", SqlDbType.NVarChar,20),
-					new SqlParameter("@SendPhone", SqlDbType.Int,4),
+					new SqlParameter("@SendPhone", SqlDbType.VarChar,15),
 					new SqlParameter("@Status", SqlDbType.Int,4),
-					new SqlParameter("@Remark", SqlDbType.VarChar,200)};
+					new SqlParameter("@Remark", SqlDbType.VarChar,200),
+					new SqlParameter("@ArrivalTime", SqlDbType.DateTime,3),
+					new SqlParameter("@GetTime", SqlDbType.DateTime,3),
+					new SqlParameter("@Type", SqlDbType.Int,4),
+					new SqlParameter("@Location", SqlDbType.VarChar,20)};
 			parameters[0].Value = model.ID;
 			parameters[1].Value = model.ExpressId;
 			parameters[2].Value = model.UserId;
@@ -55,6 +59,10 @@ namespace Express.DAL
 			parameters[4].Value = model.SendPhone;
 			parameters[5].Value = model.Status;
 			parameters[6].Value = model.Remark;
+			parameters[7].Value = model.ArrivalTime;
+			parameters[8].Value = model.GetTime;
+			parameters[9].Value = model.Type;
+			parameters[10].Value = model.Location;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -69,24 +77,32 @@ namespace Express.DAL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Express.Model.Express model)
+		public bool Update(Express.Model.Ep_Express model)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("update Express set ");
+			strSql.Append("update Ep_Express set ");
 			strSql.Append("ExpressId=@ExpressId,");
 			strSql.Append("UserId=@UserId,");
 			strSql.Append("Sender=@Sender,");
 			strSql.Append("SendPhone=@SendPhone,");
 			strSql.Append("Status=@Status,");
-			strSql.Append("Remark=@Remark");
+			strSql.Append("Remark=@Remark,");
+			strSql.Append("ArrivalTime=@ArrivalTime,");
+			strSql.Append("GetTime=@GetTime,");
+			strSql.Append("Type=@Type,");
+			strSql.Append("Location=@Location");
 			strSql.Append(" where ID=@ID ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@ExpressId", SqlDbType.VarChar,36),
 					new SqlParameter("@UserId", SqlDbType.VarChar,36),
 					new SqlParameter("@Sender", SqlDbType.NVarChar,20),
-					new SqlParameter("@SendPhone", SqlDbType.Int,4),
+					new SqlParameter("@SendPhone", SqlDbType.VarChar,15),
 					new SqlParameter("@Status", SqlDbType.Int,4),
 					new SqlParameter("@Remark", SqlDbType.VarChar,200),
+					new SqlParameter("@ArrivalTime", SqlDbType.DateTime,3),
+					new SqlParameter("@GetTime", SqlDbType.DateTime,3),
+					new SqlParameter("@Type", SqlDbType.Int,4),
+					new SqlParameter("@Location", SqlDbType.VarChar,20),
 					new SqlParameter("@ID", SqlDbType.VarChar,36)};
 			parameters[0].Value = model.ExpressId;
 			parameters[1].Value = model.UserId;
@@ -94,7 +110,11 @@ namespace Express.DAL
 			parameters[3].Value = model.SendPhone;
 			parameters[4].Value = model.Status;
 			parameters[5].Value = model.Remark;
-			parameters[6].Value = model.ID;
+			parameters[6].Value = model.ArrivalTime;
+			parameters[7].Value = model.GetTime;
+			parameters[8].Value = model.Type;
+			parameters[9].Value = model.Location;
+			parameters[10].Value = model.ID;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -114,7 +134,7 @@ namespace Express.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("delete from Express ");
+			strSql.Append("delete from Ep_Express ");
 			strSql.Append(" where ID=@ID ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@ID", SqlDbType.VarChar,36)			};
@@ -136,7 +156,7 @@ namespace Express.DAL
 		public bool DeleteList(string IDlist )
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("delete from Express ");
+			strSql.Append("delete from Ep_Express ");
 			strSql.Append(" where ID in ("+IDlist + ")  ");
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString());
 			if (rows > 0)
@@ -153,17 +173,17 @@ namespace Express.DAL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Express.Model.Express GetModel(string ID)
+		public Express.Model.Ep_Express GetModel(string ID)
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 ID,ExpressId,UserId,Sender,SendPhone,Status,Remark from Express ");
+			strSql.Append("select  top 1 ID,ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,Type,Location from Ep_Express ");
 			strSql.Append(" where ID=@ID ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@ID", SqlDbType.VarChar,36)			};
 			parameters[0].Value = ID;
 
-			Express.Model.Express model=new Express.Model.Express();
+			Express.Model.Ep_Express model=new Express.Model.Ep_Express();
 			DataSet ds=DbHelperSQL.Query(strSql.ToString(),parameters);
 			if(ds.Tables[0].Rows.Count>0)
 			{
@@ -179,9 +199,9 @@ namespace Express.DAL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Express.Model.Express DataRowToModel(DataRow row)
+		public Express.Model.Ep_Express DataRowToModel(DataRow row)
 		{
-			Express.Model.Express model=new Express.Model.Express();
+			Express.Model.Ep_Express model=new Express.Model.Ep_Express();
 			if (row != null)
 			{
 				if(row["ID"]!=null)
@@ -202,7 +222,7 @@ namespace Express.DAL
 				}
 				if(row["SendPhone"]!=null)
 				{
-					model.SendPhone= row["SendPhone"].ToString();
+					model.SendPhone=row["SendPhone"].ToString();
 				}
 				if(row["Status"]!=null && row["Status"].ToString()!="")
 				{
@@ -211,6 +231,22 @@ namespace Express.DAL
 				if(row["Remark"]!=null)
 				{
 					model.Remark=row["Remark"].ToString();
+				}
+				if(row["ArrivalTime"]!=null && row["ArrivalTime"].ToString()!="")
+				{
+					model.ArrivalTime=DateTime.Parse(row["ArrivalTime"].ToString());
+				}
+				if(row["GetTime"]!=null && row["GetTime"].ToString()!="")
+				{
+					model.GetTime=DateTime.Parse(row["GetTime"].ToString());
+				}
+				if(row["Type"]!=null && row["Type"].ToString()!="")
+				{
+					model.Type=int.Parse(row["Type"].ToString());
+				}
+				if(row["Location"]!=null)
+				{
+					model.Location=row["Location"].ToString();
 				}
 			}
 			return model;
@@ -222,8 +258,8 @@ namespace Express.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select ID,ExpressId,UserId,Sender,SendPhone,Status,Remark ");
-			strSql.Append(" FROM Express ");
+			strSql.Append("select ID,ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,Type,Location ");
+			strSql.Append(" FROM Ep_Express ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -242,8 +278,8 @@ namespace Express.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" ID,ExpressId,UserId,Sender,SendPhone,Status,Remark ");
-			strSql.Append(" FROM Express ");
+			strSql.Append(" ID,ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,Type,Location ");
+			strSql.Append(" FROM Ep_Express ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -258,7 +294,7 @@ namespace Express.DAL
 		public int GetRecordCount(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select count(1) FROM Express ");
+			strSql.Append("select count(1) FROM Ep_Express ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -289,7 +325,7 @@ namespace Express.DAL
 			{
 				strSql.Append("order by T.ID desc");
 			}
-			strSql.Append(")AS Row, T.*  from Express T ");
+			strSql.Append(")AS Row, T.*  from Ep_Express T ");
 			if (!string.IsNullOrEmpty(strWhere.Trim()))
 			{
 				strSql.Append(" WHERE " + strWhere);
@@ -299,7 +335,7 @@ namespace Express.DAL
 			return DbHelperSQL.Query(strSql.ToString());
 		}
 
-		/*
+        /*
 		/// <summary>
 		/// 分页获取数据列表
 		/// </summary>
@@ -314,7 +350,7 @@ namespace Express.DAL
 					new SqlParameter("@OrderType", SqlDbType.Bit),
 					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
 					};
-			parameters[0].Value = "Express";
+			parameters[0].Value = "Ep_Express";
 			parameters[1].Value = "ID";
 			parameters[2].Value = PageSize;
 			parameters[3].Value = PageIndex;
@@ -324,10 +360,62 @@ namespace Express.DAL
 			return DbHelperSQL.RunProcedure("UP_GetRecordByPage",parameters,"ds");
 		}*/
 
-		#endregion  BasicMethod
-		#region  ExtensionMethod
+        #endregion  BasicMethod
+        #region  ExtensionMethod
 
-		#endregion  ExtensionMethod
-	}
+        /// <summary>
+        /// 生成SqlParameter对象
+        /// </summary>
+        /// <param name="fields"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private SqlParameter CreateSqlParameter(string fields, Model.Ep_Express model)
+        {
+            //通过反射获取指定属性的值
+            Type type = model.GetType();
+            System.Reflection.PropertyInfo pi = type.GetProperty(fields);//获取指定的属性
+            if (pi == null)
+            {
+                throw new Exception("没有找到指定的属性" + fields);//抛异常
+            }
+            object value = pi.GetValue(model, null);//获取属性值
+
+            return new SqlParameter("@" + fields, value);
+        }
+
+        /// <summary>
+        /// 更新指定列
+        /// </summary>
+        /// <param name="model">News对象</param>
+        /// <param name="fields">列数组</param>
+        /// <param name="where">where条件</param>
+        /// <returns></returns>
+        public int Update(Express.Model.Ep_Express model, string[] fields, string where)
+        {
+            if (fields == null || fields.Length <= 0)
+            {
+                return 0;
+            }
+
+            SqlParameter[] ps = new SqlParameter[fields.Length];
+
+            //"a"+"b"+"c"+"d" //每次拼接都会产生一个新的字符串对象
+            //StringBuilder只有一个对象
+            StringBuilder sb = new StringBuilder();
+            sb.Append("update Ep_Express set ");
+
+            for (int i = 0; i < fields.Length; i++)
+            {
+                sb.AppendFormat("{0}=@{0}{1}", fields[i], (i != fields.Length - 1 ? "," : ""));//最后一位去掉逗号
+
+                ps[i] = this.CreateSqlParameter(fields[i], model);//生成SqlParameter对象
+            }
+
+            sb.Append(" where " + where);
+
+            return DbHelperSQL.ExecuteSql(sb.ToString(), ps);
+        }
+        #endregion  ExtensionMethod
+    }
 }
 

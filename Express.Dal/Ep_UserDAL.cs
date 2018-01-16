@@ -6,11 +6,11 @@ using Express.DBUtility;//Please add references
 namespace Express.DAL
 {
 	/// <summary>
-	/// 数据访问类:User
+	/// 数据访问类:Ep_UserDAL
 	/// </summary>
-	public partial class UserDAL
-    {
-		public UserDAL()
+	public partial class Ep_UserDAL
+	{
+		public Ep_UserDAL()
 		{}
 		#region  BasicMethod
 
@@ -20,7 +20,7 @@ namespace Express.DAL
 		public bool Exists(string UserId)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select count(1) from User");
+			strSql.Append("select count(1) from Ep_User");
 			strSql.Append(" where UserId=@UserId ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@UserId", SqlDbType.VarChar,36)			};
@@ -33,17 +33,17 @@ namespace Express.DAL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Express.Model.User model)
+		public bool Add(Express.Model.Ep_User model)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("insert into User(");
+			strSql.Append("insert into Ep_User(");
 			strSql.Append("UserId,Name,Phone,Address,WechatId,Remark)");
 			strSql.Append(" values (");
 			strSql.Append("@UserId,@Name,@Phone,@Address,@WechatId,@Remark)");
 			SqlParameter[] parameters = {
 					new SqlParameter("@UserId", SqlDbType.VarChar,36),
 					new SqlParameter("@Name", SqlDbType.NVarChar,20),
-					new SqlParameter("@Phone", SqlDbType.Int,4),
+					new SqlParameter("@Phone", SqlDbType.VarChar,15),
 					new SqlParameter("@Address", SqlDbType.NVarChar,50),
 					new SqlParameter("@WechatId", SqlDbType.VarChar,36),
 					new SqlParameter("@Remark", SqlDbType.NVarChar,200)};
@@ -67,10 +67,10 @@ namespace Express.DAL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Express.Model.User model)
+		public bool Update(Express.Model.Ep_User model)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("update User set ");
+			strSql.Append("update Ep_User set ");
 			strSql.Append("Name=@Name,");
 			strSql.Append("Phone=@Phone,");
 			strSql.Append("Address=@Address,");
@@ -79,7 +79,7 @@ namespace Express.DAL
 			strSql.Append(" where UserId=@UserId ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@Name", SqlDbType.NVarChar,20),
-					new SqlParameter("@Phone", SqlDbType.Int,4),
+					new SqlParameter("@Phone", SqlDbType.VarChar,15),
 					new SqlParameter("@Address", SqlDbType.NVarChar,50),
 					new SqlParameter("@WechatId", SqlDbType.VarChar,36),
 					new SqlParameter("@Remark", SqlDbType.NVarChar,200),
@@ -109,7 +109,7 @@ namespace Express.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("delete from User ");
+			strSql.Append("delete from Ep_User ");
 			strSql.Append(" where UserId=@UserId ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@UserId", SqlDbType.VarChar,36)			};
@@ -131,7 +131,7 @@ namespace Express.DAL
 		public bool DeleteList(string UserIdlist )
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("delete from User ");
+			strSql.Append("delete from Ep_User ");
 			strSql.Append(" where UserId in ("+UserIdlist + ")  ");
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString());
 			if (rows > 0)
@@ -148,17 +148,17 @@ namespace Express.DAL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Express.Model.User GetModel(string UserId)
+		public Express.Model.Ep_User GetModel(string UserId)
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 UserId,Name,Phone,Address,WechatId,Remark from User ");
+			strSql.Append("select  top 1 UserId,Name,Phone,Address,WechatId,Remark from Ep_User ");
 			strSql.Append(" where UserId=@UserId ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@UserId", SqlDbType.VarChar,36)			};
 			parameters[0].Value = UserId;
 
-			Express.Model.User model=new Express.Model.User();
+			Express.Model.Ep_User model=new Express.Model.Ep_User();
 			DataSet ds=DbHelperSQL.Query(strSql.ToString(),parameters);
 			if(ds.Tables[0].Rows.Count>0)
 			{
@@ -174,9 +174,9 @@ namespace Express.DAL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Express.Model.User DataRowToModel(DataRow row)
+		public Express.Model.Ep_User DataRowToModel(DataRow row)
 		{
-			Express.Model.User model=new Express.Model.User();
+			Express.Model.Ep_User model=new Express.Model.Ep_User();
 			if (row != null)
 			{
 				if(row["UserId"]!=null)
@@ -189,7 +189,7 @@ namespace Express.DAL
 				}
 				if(row["Phone"]!=null)
 				{
-					model.Phone= row["Phone"].ToString();
+					model.Phone=row["Phone"].ToString();
 				}
 				if(row["Address"]!=null)
 				{
@@ -214,7 +214,7 @@ namespace Express.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select UserId,Name,Phone,Address,WechatId,Remark ");
-			strSql.Append(" FROM User ");
+			strSql.Append(" FROM Ep_User ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -234,7 +234,7 @@ namespace Express.DAL
 				strSql.Append(" top "+Top.ToString());
 			}
 			strSql.Append(" UserId,Name,Phone,Address,WechatId,Remark ");
-			strSql.Append(" FROM User ");
+			strSql.Append(" FROM Ep_User ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -249,7 +249,7 @@ namespace Express.DAL
 		public int GetRecordCount(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select count(1) FROM User ");
+			strSql.Append("select count(1) FROM Ep_User ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -280,7 +280,7 @@ namespace Express.DAL
 			{
 				strSql.Append("order by T.UserId desc");
 			}
-			strSql.Append(")AS Row, T.*  from User T ");
+			strSql.Append(")AS Row, T.*  from Ep_User T ");
 			if (!string.IsNullOrEmpty(strWhere.Trim()))
 			{
 				strSql.Append(" WHERE " + strWhere);
@@ -305,7 +305,7 @@ namespace Express.DAL
 					new SqlParameter("@OrderType", SqlDbType.Bit),
 					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
 					};
-			parameters[0].Value = "User";
+			parameters[0].Value = "Ep_User";
 			parameters[1].Value = "UserId";
 			parameters[2].Value = PageSize;
 			parameters[3].Value = PageIndex;
