@@ -175,6 +175,16 @@ namespace Express.BLL
         {
             return dal.Update(model, fields, where) > 0;
         }
+
+
+        /// <summary>
+		/// 获得数据列表 用户表+快递表
+		/// </summary>
+		public List<Express.Model.Ep_Express> GetModelListEpUser(string strWhere)
+        {
+            DataSet ds = dal.GetListEpUser(strWhere);
+            return DataTableToList(ds.Tables[0]);
+        }
         #endregion  ExtensionMethod
     }
 }

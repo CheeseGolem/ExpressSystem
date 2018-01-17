@@ -10,6 +10,8 @@ namespace Express.OPPortal.ExpressInfo
     using Express.BLL;
     using Express.Common;
     using Express.Model;
+    using System.Text;
+
     public partial class List : PageBase
     {
         Ep_ExpressBLL bllExpress = new Ep_ExpressBLL();
@@ -98,6 +100,44 @@ namespace Express.OPPortal.ExpressInfo
             {
                 ScriptHelper.Alert("删除失败");
             }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string strEpId = txtExpressId.Text.Trim();
+            string strUsername = txtUsername.Text.Trim();
+            string strEpStatus = ddlEpStatus.SelectedValue;
+            string strBeginDate = txtBeginDate.Value;
+            string strEndDate = txtEndDate.Value;
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(" and 1=1");
+            if (!string.IsNullOrWhiteSpace(strEpId) && strEpId.IsNumber())
+            {
+                sb.Append(" and ExpressId= " + strEpId);
+            }
+            if (!string.IsNullOrWhiteSpace(strUsername))
+            {
+                //需调整
+                sb.Append(" and name like '%" + strUsername + "%'");
+            }
+            if (Convert.ToInt32(strEpStatus) != -1)
+            {
+                sb.Append(" and Status=" + strEpStatus);
+            }
+            if (!string.IsNullOrWhiteSpace(strBeginDate))
+            {
+                sb.Append(" and ArrivalTime>='" + strBeginDate + "'");
+            }
+            if (!string.IsNullOrWhiteSpace(strEndDate))
+            {
+                sb.Append(" and ArrivalTime<='" + strEndDate + "'");
+            }
+
+            //条件查询，重新绑定数据
+            List<Ep_Express> list = bllExpress.GetModelListEpUser(sb.ToString());
+            repExpressList.DataSource = list;
+            repExpressList.DataBind();
         }
     }
 }

@@ -4,16 +4,6 @@
 <%@ Import Namespace="Express.Model" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .form-control {
-            width: 200px;
-            display: inline-block;
-        }
-
-        .query .row {
-            margin-top: 2px;
-        }
-    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="right" runat="server">

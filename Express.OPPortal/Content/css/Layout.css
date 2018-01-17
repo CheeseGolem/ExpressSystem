@@ -5,6 +5,22 @@
     font-size: 14px;
 }
 
+.form-control {
+    width: 200px;
+    display: inline-block;
+}
+
+table .form-control {
+    width: 300px;
+}
+
+.query .row {
+    margin-top: 2px;
+}
+
+
+
+
 .yh-container, .yh-container .top, .yh-container .center, .yh-container .center-left, .yh-container .center-right, .yh-container .bottom {
     border: dashed 1px black;
 }
@@ -90,6 +106,4 @@
         line-height: 30px;
     }
 
-table .form-control {
-    width: 300px;
-}
+

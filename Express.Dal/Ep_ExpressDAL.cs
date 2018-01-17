@@ -415,6 +415,22 @@ namespace Express.DAL
 
             return DbHelperSQL.ExecuteSql(sb.ToString(), ps);
         }
+
+
+        /// <summary>
+		/// 获得数据列表
+		/// </summary>
+		public DataSet GetListEpUser(string strWhere)
+        {
+            StringBuilder strSql = new StringBuilder();            
+            strSql.Append("select ID,ExpressId,Ep_User.UserId,Sender,SendPhone,Status,Ep_User.Remark,ArrivalTime,GetTime,Type,Location ");
+            strSql.Append(" from Ep_Express,Ep_User ");            
+            if (strWhere.Trim() != "")
+            {
+                strSql.Append(" where Ep_Express.UserId=Ep_User.UserId " + strWhere);
+            }
+            return DbHelperSQL.Query(strSql.ToString());
+        }
         #endregion  ExtensionMethod
     }
 }

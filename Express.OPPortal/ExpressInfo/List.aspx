@@ -3,6 +3,37 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="right" runat="server">
+    <div class="query">
+        <div class="row">
+            <div class="col-md-12">
+                快递单号：
+                <asp:TextBox ID="txtExpressId" runat="server" CssClass="form-control"></asp:TextBox>
+                &nbsp;&nbsp;
+                用户名：
+                <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control"></asp:TextBox>
+                &nbsp;&nbsp;
+                快递状态：
+                <asp:DropDownList ID="ddlEpStatus" runat="server" CssClass="form-control">
+                    <asp:ListItem Selected="True" Value="-1">---全部---</asp:ListItem>
+                    <asp:ListItem Value="0">未接收</asp:ListItem>
+                    <asp:ListItem Value="1">已接收</asp:ListItem>
+                    <asp:ListItem Value="2">已超时</asp:ListItem>
+                </asp:DropDownList>
+                &nbsp;&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                到站时间：
+                <input id="txtBeginDate" type="text" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" runat="server" class="form-control" />
+                &nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="txtEndDate" type="text" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" runat="server" class="form-control" />
+                &nbsp;&nbsp;
+                <asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" CssClass="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
     <%-- 新增按钮 跳转页面 --%>
     <input type="button" class="btn btn-primary" value="新增快递" onclick="javascript: location.href = '/ExpressInfo/Edit.aspx'" style="margin: 5px;" />
 
