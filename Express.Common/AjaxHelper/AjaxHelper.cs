@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +7,12 @@ using System.Web;
 namespace Express.Common
 {
     /// <summary>
-    /// AJAX°ïÖúÀà
+    /// AJAXå¸®åŠ©ç±»
     /// </summary>
     public class AjaxHelper
     {
         /// <summary>
-        /// Êä³öJSON
+        /// è¾“å‡ºJSON
         /// </summary>
         /// <param name="status"></param>
         /// <param name="msg"></param>
@@ -25,12 +25,12 @@ namespace Express.Common
                 Msg = msg,
                 Data = data,
             };
-            HttpContext.Current.Response.Write(JsonHelper.Serialize(objAjax));//½«¶ÔÏó×ª»»³ÉJSON×Ö·û´®
-            HttpContext.Current.Response.End();//¡¾½áÊøÏìÓ¦¡¿ ÏÂÃæµÄ´úÂë²»»á±»Ö´ĞĞ
+            HttpContext.Current.Response.Write(JsonHelper.Serialize(objAjax));//å°†å¯¹è±¡è½¬æ¢æˆJSONå­—ç¬¦ä¸²
+            HttpContext.Current.Response.End();//ã€ç»“æŸå“åº”ã€‘ ä¸‹é¢çš„ä»£ç ä¸ä¼šè¢«æ‰§è¡Œ
         }
 
         /// <summary>
-        /// Êä³ö³É¹¦JSON
+        /// è¾“å‡ºæˆåŠŸJSON
         /// </summary>
         /// <param name="msg"></param>
         /// <param name="data"></param>
@@ -39,7 +39,7 @@ namespace Express.Common
             WriteJson(AjaxSatusEnum.Success, msg, data);
         }
         /// <summary>
-        /// Êä³ö´íÎóJSON
+        /// è¾“å‡ºé”™è¯¯JSON
         /// </summary>
         /// <param name="msg"></param>
         /// <param name="data"></param>
@@ -48,11 +48,11 @@ namespace Express.Common
             WriteJson(AjaxSatusEnum.Error, msg, data);
         }
         /// <summary>
-        /// Êä³öÎ´µÇÂ¼JSON
+        /// è¾“å‡ºæœªç™»å½•JSON
         /// </summary>
         public static void WriteNoLoginJson()
         {
-            WriteJson(AjaxSatusEnum.NoLogin, "Äú»¹Î´µÇÂ¼", null);
+            WriteJson(AjaxSatusEnum.NoLogin, "æ‚¨è¿˜æœªç™»å½•", null);
         }
     }
 }

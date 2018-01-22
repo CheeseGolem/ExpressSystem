@@ -79,4 +79,26 @@ namespace Express.Model
         [EnumDescription("超时")]
         TimeOut = 2
     }
+
+    /// <summary>
+    /// 快递类型
+    /// </summary>
+    public enum ExpressType
+    {
+        /// <summary>
+        /// 普通件
+        /// </summary>
+        [EnumDescription("普通件")]
+        Ordinary = 1,
+        /// <summary>
+        /// 贵重件
+        /// </summary>
+        [EnumDescription("贵重件")]
+        Precious = 2,
+        /// <summary>
+        /// 大体积
+        /// </summary>
+        [EnumDescription("大体积")]
+        Large = 3,
+    }
 }

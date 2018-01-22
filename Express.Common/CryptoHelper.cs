@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -6,17 +6,17 @@ using System.Text;
 namespace Express.Common
 {
     /// <summary>
-    /// ¼ÓÃÜ°ïÖúÀà
+    /// åŠ å¯†å¸®åŠ©ç±»
     /// </summary>
     public class CryptoHelper
     {
-        #region MD5¼ÓÃÜ
+        #region MD5åŠ å¯†
         /// <summary>
-        /// ±ê×¼MD5¼ÓÃÜ
+        /// æ ‡å‡†MD5åŠ å¯†
         /// </summary>
-        /// <param name="source">´ı¼ÓÃÜ×Ö·û´®</param>
-        /// <param name="addKey">¸½¼Ó×Ö·û´®</param>
-        /// <param name="encoding">±àÂë·½Ê½</param>
+        /// <param name="source">å¾…åŠ å¯†å­—ç¬¦ä¸²</param>
+        /// <param name="addKey">é™„åŠ å­—ç¬¦ä¸²</param>
+        /// <param name="encoding">ç¼–ç æ–¹å¼</param>
         /// <returns>string</returns>
         public static string MD5_Encrypt(string source, string addKey, Encoding encoding)
         {
@@ -40,10 +40,10 @@ namespace Express.Common
         }
 
         /// <summary>
-        /// ±ê×¼MD5¼ÓÃÜ
+        /// æ ‡å‡†MD5åŠ å¯†
         /// </summary>
-        /// <param name="source">´ı¼ÓÃÜ×Ö·û´®</param>
-        /// <param name="encoding">±àÂë·½Ê½</param>
+        /// <param name="source">å¾…åŠ å¯†å­—ç¬¦ä¸²</param>
+        /// <param name="encoding">ç¼–ç æ–¹å¼</param>
         /// <returns></returns>
         public static string MD5_Encrypt(string source, string encoding)
         {
@@ -51,9 +51,9 @@ namespace Express.Common
         }
 
         /// <summary>
-        /// ±ê×¼MD5¼ÓÃÜ
+        /// æ ‡å‡†MD5åŠ å¯†
         /// </summary>
-        /// <param name="source">±»¼ÓÃÜµÄ×Ö·û´®</param>
+        /// <param name="source">è¢«åŠ å¯†çš„å­—ç¬¦ä¸²</param>
         /// <returns></returns>
         public static string MD5_Encrypt(string source)
         {
@@ -61,12 +61,12 @@ namespace Express.Common
         }
         #endregion
 
-        #region 3DES¼Ó½âÃÜ
+        #region 3DESåŠ è§£å¯†
         /// <summary>
-        /// 3DES¼ÓÃÜ
+        /// 3DESåŠ å¯†
         /// </summary>
-        /// <param name="source">´ı¼ÓÃÜ×Ö·û</param>
-        /// <param name="key">ÃÜÔ¿</param>
+        /// <param name="source">å¾…åŠ å¯†å­—ç¬¦</param>
+        /// <param name="key">å¯†é’¥</param>
         /// <returns>string</returns>
         public static string TripleDES_Encrypt(string source, string key)
         {
@@ -80,11 +80,11 @@ namespace Express.Common
         }
 
         /// <summary>
-        /// 3DES¼ÓÃÜ
+        /// 3DESåŠ å¯†
         /// </summary>
-        /// <param name="source">´ı¼ÓÃÜ×Ö·û</param>
-        /// <param name="key">ÃÜÔ¿</param>
-        /// <param name="encoding">±àÂë·½Ê½</param>
+        /// <param name="source">å¾…åŠ å¯†å­—ç¬¦</param>
+        /// <param name="key">å¯†é’¥</param>
+        /// <param name="encoding">ç¼–ç æ–¹å¼</param>
         /// <returns>string</returns>
         public static string TripleDES_Encrypt(string source, string key, string encoding)
         {
@@ -98,10 +98,10 @@ namespace Express.Common
         }
 
         /// <summary>
-        /// 3DES½âÃÜ
+        /// 3DESè§£å¯†
         /// </summary>
-        /// <param name="source">´ı¼ÓÃÜ×Ö·û</param>
-        /// <param name="key">ÃÜÔ¿</param>
+        /// <param name="source">å¾…åŠ å¯†å­—ç¬¦</param>
+        /// <param name="key">å¯†é’¥</param>
         /// <returns>string</returns>
         public static string TripleDES_Decrypt(string source, string key)
         {
@@ -125,11 +125,11 @@ namespace Express.Common
         }
 
         /// <summary>
-        /// 3DES½âÃÜ
+        /// 3DESè§£å¯†
         /// </summary>
-        /// <param name="source">´ı¼ÓÃÜ×Ö·û</param>
-        /// <param name="key">ÃÜÔ¿</param>
-        /// <param name="encoding">±àÂë·½Ê½</param>
+        /// <param name="source">å¾…åŠ å¯†å­—ç¬¦</param>
+        /// <param name="key">å¯†é’¥</param>
+        /// <param name="encoding">ç¼–ç æ–¹å¼</param>
         /// <returns>string</returns>
         public static string TripleDES_Decrypt(string source, string key, string encoding)
         {

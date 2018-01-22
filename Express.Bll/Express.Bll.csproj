@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Ep_AdminBLL.cs" />
     <Compile Include="Ep_ExpressBLL.cs" />
+    <Compile Include="Ep_ShelfBLL.cs" />
     <Compile Include="Ep_UserBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Ep_AdminDAL.cs" />
     <Compile Include="Ep_ExpressDAL.cs" />
+    <Compile Include="Ep_ShelfDAL.cs" />
     <Compile Include="Ep_UserDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -105,6 +105,8 @@
     <Content Include="ExpressInfo\Edit.aspx" />
     <Content Include="ExpressInfo\List.aspx" />
     <Content Include="Index.aspx" />
+    <Content Include="LocationInfo\Edit.aspx" />
+    <Content Include="LocationInfo\List.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Admin\Edit.aspx" />
     <Content Include="Admin\List.aspx" />
@@ -142,6 +144,20 @@
     </Compile>
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LocationInfo\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LocationInfo\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LocationInfo\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LocationInfo\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login\CaptchaHandler.ashx.cs">
       <DependentUpon>CaptchaHandler.ashx</DependentUpon>
@@ -218,7 +234,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LocationInfo\" />
     <Folder Include="WeChatMenu\" />
   </ItemGroup>
   <PropertyGroup>

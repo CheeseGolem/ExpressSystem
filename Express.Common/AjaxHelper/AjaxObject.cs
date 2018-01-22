@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +6,12 @@ using System.Text;
 namespace Express.Common
 {
     /// <summary>
-    /// Ajax¶ÔÏó
+    /// Ajaxå¯¹è±¡
     /// </summary>
     public class AjaxObject
     {
         /// <summary>
-        /// ¹¹Ôìº¯Êı ³õÊ¼»¯ÊôĞÔ
+        /// æ„é€ å‡½æ•° åˆå§‹åŒ–å±æ€§
         /// </summary>
         public AjaxObject()
         {
@@ -21,15 +21,15 @@ namespace Express.Common
             this.Data = null;
         }
         /// <summary>
-        /// ×´Ì¬ 0±íÊ¾³É¹¦ 1±íÊ¾»¹Î´µÇÂ¼ ÆäËû±íÊ¾ÆäËû´íÎó
+        /// çŠ¶æ€ 0è¡¨ç¤ºæˆåŠŸ 1è¡¨ç¤ºè¿˜æœªç™»å½• å…¶ä»–è¡¨ç¤ºå…¶ä»–é”™è¯¯
         /// </summary>
         public AjaxSatusEnum Status { get; set; }
         /// <summary>
-        /// ´íÎóÏûÏ¢
+        /// é”™è¯¯æ¶ˆæ¯
         /// </summary>
         public string Msg { get; set; }
         /// <summary>
-        /// ¸½¼ÓÊı¾İ
+        /// é™„åŠ æ•°æ®
         /// </summary>
         public object Data { get; set; }
     }
