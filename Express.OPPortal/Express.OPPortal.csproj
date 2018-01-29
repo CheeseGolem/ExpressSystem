@@ -58,6 +58,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Comment\List.aspx" />
     <Content Include="Content\bootstrap\css\bootstrap-admin-theme.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
@@ -105,6 +106,7 @@
     <Content Include="ExpressInfo\Edit.aspx" />
     <Content Include="ExpressInfo\List.aspx" />
     <Content Include="Index.aspx" />
+    <Content Include="UserInfo\List.aspx" />
     <Content Include="LocationInfo\Edit.aspx" />
     <Content Include="LocationInfo\List.aspx" />
     <Content Include="Login.aspx" />
@@ -121,6 +123,13 @@
       <DependentUpon>AdminPage.Master</DependentUpon>
     </Compile>
     <Compile Include="BaseHandler.cs" />
+    <Compile Include="Comment\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Comment\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ExpressInfo\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -144,6 +153,13 @@
     </Compile>
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="LocationInfo\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>

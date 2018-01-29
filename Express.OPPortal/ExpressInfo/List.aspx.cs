@@ -65,15 +65,15 @@ namespace Express.OPPortal.ExpressInfo
                 Label lblUserId = e.Item.FindControl("lblUserId") as Label;
                 Label lblPhone = e.Item.FindControl("lblPhone") as Label;
                 //获取控件中的文本
-                string strUserId = lblUserId.Text;
+                int strUserId = Convert.ToInt32(lblUserId.Text);
                 //将Label控件的文本重新赋值
-                if (!string.IsNullOrWhiteSpace(strUserId))
-                {
+                //if (!string.IsNullOrWhiteSpace(strUserId))
+                //{
                     Ep_User model = new Ep_User();
                     model = bllUser.GetModel(strUserId);
                     lblUserId.Text = model.Name.ToString();
                     lblPhone.Text = model.Phone.ToString();
-                }                
+                //}                
             }
         }
 
@@ -82,7 +82,7 @@ namespace Express.OPPortal.ExpressInfo
             switch (e.CommandName)
             {
                 case "Del":
-                    string expressId = e.CommandArgument.ToString();
+                    int expressId = Convert.ToInt32(e.CommandArgument);
                     DeleteExpress(expressId);
                     break;
                 default:
@@ -90,7 +90,7 @@ namespace Express.OPPortal.ExpressInfo
             }
         }
 
-        private void DeleteExpress(string expressId)
+        private void DeleteExpress(int expressId)
         {
             if (bllExpress.Delete(expressId))
             {

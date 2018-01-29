@@ -10,9 +10,9 @@ namespace Express.Model
 		public Ep_Express()
 		{}
 		#region Model
-		private string _id;
+		private int _id;
 		private string _expressid;
-		private string _userid;
+		private int _userid;
 		private string _sender;
 		private string _sendphone;
 		private int? _status=0;
@@ -21,34 +21,34 @@ namespace Express.Model
 		private DateTime? _gettime;
 		private int? _type;
 		private string _location;
-		/// <summary>
-		/// 
-		/// </summary>
-		public string ID
-		{
-			set{ _id=value;}
-			get{return _id;}
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public string ExpressId
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ID
+        {
+            set { _id = value; }
+            get { return _id; }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ExpressId
 		{
 			set{ _expressid=value;}
 			get{return _expressid;}
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public string UserId
-		{
-			set{ _userid=value;}
-			get{return _userid;}
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public string Sender
+        /// <summary>
+        /// 
+        /// </summary>
+        public int UserId
+        {
+            set { _userid = value; }
+            get { return _userid; }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Sender
 		{
 			set{ _sender=value;}
 			get{return _sender;}

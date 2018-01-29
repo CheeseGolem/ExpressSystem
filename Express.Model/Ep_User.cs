@@ -10,7 +10,7 @@ namespace Express.Model
 		public Ep_User()
 		{}
 		#region Model
-		private string _userid;
+		private int _userid;
 		private string _name;
 		private string _phone;
 		private string _address;
@@ -19,7 +19,7 @@ namespace Express.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string UserId
+		public int UserId
 		{
 			set{ _userid=value;}
 			get{return _userid;}

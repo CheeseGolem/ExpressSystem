@@ -23,11 +23,11 @@ namespace Express.OPPortal.ExpressInfo
                 BindExpressStatus();
 
                 //判断新建页或编辑页
-                string strId = Request.QueryString["id"];
-                if (!string.IsNullOrWhiteSpace(strId))
-                {
-                    BindData(strId);
-                }
+                int strId = Convert.ToInt32(Request.QueryString["id"]);
+                //if (!string.IsNullOrWhiteSpace(strId))
+                //{
+                BindData(strId);
+                //}
             }
         }
 
@@ -47,7 +47,7 @@ namespace Express.OPPortal.ExpressInfo
         /// 绑定数据
         /// </summary>
         /// <param name="userId">用户编号</param>
-        private void BindData(string id)
+        private void BindData(int id)
         {
             //1.0 从数据库读取数据
             Ep_ExpressBLL bllExpress = new Ep_ExpressBLL();
@@ -66,12 +66,12 @@ namespace Express.OPPortal.ExpressInfo
 
             Ep_UserBLL bllUser = new Ep_UserBLL();
             Ep_User modelUser = new Ep_User();
-            if (!string.IsNullOrWhiteSpace(model.UserId))
-            {
-                modelUser = bllUser.GetModel(model.UserId);
-                txtUserName.Text = modelUser.Name.ToString();
-                txtPhone.Text = modelUser.Phone.ToString();
-            }                        
+            //if (!string.IsNullOrWhiteSpace(model.UserId))
+            //{
+            modelUser = bllUser.GetModel(model.UserId);
+            txtUserName.Text = modelUser.Name.ToString();
+            txtPhone.Text = modelUser.Phone.ToString();
+            //}                        
 
             ViewState["id"] = model.ID;//将原数据保存在隐藏域中
             //viewstate 只保存ID
@@ -83,20 +83,25 @@ namespace Express.OPPortal.ExpressInfo
             {
                 Ep_Express model = new Ep_Express();
                 model.ExpressId = txtExpressId.Text;
-                model.UserId = hidUserId.Value;
+                if (hidUserId.Value != "")
+                {
+                    model.UserId = Convert.ToInt32(hidUserId.Value);
+                }
+                model.UserId = 0;
                 model.Remark = txtRemark.Text;
                 model.Status = Convert.ToInt32(ddlStatus.SelectedIndex);
 
                 if (ViewState["id"] != null)//修改
                 {
-                    model.ID = ViewState["id"].ToString();
-                    string[] fields = { "id", "Status", "Remark", "ArrivalTime", "", "", "", "", "" };
-                    bllExpress.Update(model, fields);
+                    model.ID = Convert.ToInt32(ViewState["id"]);
+                    string[] fields = { "Status", "Remark", "ArrivalTime" };
+                    string sqlstr = " id=" + model.ID;
+                    bllExpress.Update(model, fields, sqlstr);
                     ScriptHelper.AlertRedirect("更新成功", "/ExpressInfo/List.aspx");
                 }
                 else//新增
                 {
-                    model.ID = Guid.NewGuid().ToString();
+                    //model.ID = Guid.NewGuid().ToString();
                     model.ArrivalTime = DateTime.Now;
 
                     Ep_UserBLL bllUser = new Ep_UserBLL();
@@ -104,8 +109,8 @@ namespace Express.OPPortal.ExpressInfo
                     if (!bllUser.Exists(model.UserId))
                     {
                         try
-                        {                            
-                            modelUser.UserId = Guid.NewGuid().ToString();
+                        {
+                            //modelUser.UserId = Guid.NewGuid().ToString();
                             model.UserId = modelUser.UserId;
                             modelUser.Phone = txtPhone.Text;
                             bllUser.Add(modelUser);
@@ -114,7 +119,7 @@ namespace Express.OPPortal.ExpressInfo
                         {
 
                             throw;
-                        }                        
+                        }
                     }
 
                     bllExpress.Add(model);

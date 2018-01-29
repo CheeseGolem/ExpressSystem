@@ -76,7 +76,7 @@ namespace Express.Model
         /// <summary>
         /// 超时
         /// </summary>
-        [EnumDescription("超时")]
+        [EnumDescription("已超时")]
         TimeOut = 2
     }
 
