@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Express.OPPortal</RootNamespace>
     <AssemblyName>Express.OPPortal</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,27 +39,39 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin, Version=4.18.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Senparc.Weixin.4.18.12\lib\net40\Senparc.Weixin.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin.MP, Version=14.8.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Senparc.Weixin.MP.14.8.12\lib\net40\Senparc.Weixin.MP.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Comment\Edit.aspx" />
     <Content Include="Comment\List.aspx" />
     <Content Include="Content\bootstrap\css\bootstrap-admin-theme.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
@@ -105,6 +119,7 @@
     <Content Include="Content\My97DatePicker\开发包\skin\whyGreen\img.gif" />
     <Content Include="ExpressInfo\Edit.aspx" />
     <Content Include="ExpressInfo\List.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Index.aspx" />
     <Content Include="UserInfo\List.aspx" />
     <Content Include="LocationInfo\Edit.aspx" />
@@ -112,7 +127,9 @@
     <Content Include="Login.aspx" />
     <Content Include="Admin\Edit.aspx" />
     <Content Include="Admin\List.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminPage.Master.cs">
@@ -123,6 +140,13 @@
       <DependentUpon>AdminPage.Master</DependentUpon>
     </Compile>
     <Compile Include="BaseHandler.cs" />
+    <Compile Include="Comment\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Comment\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Comment\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -146,6 +170,9 @@
     </Compile>
     <Compile Include="ExpressInfo\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -228,6 +255,7 @@
     <Content Include="Admin\SaveUserHandler.ashx" />
     <Content Include="Login\LoginoutHandler.ashx" />
     <Content Include="ExpressInfo\ExpressInfo.ashx" />
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -247,6 +275,10 @@
     <ProjectReference Include="..\Express.Model\Express.Model.csproj">
       <Project>{fb25ff17-5981-40e2-bd71-ff509b43c74b}</Project>
       <Name>Express.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Express.WeiXin.Base\Express.WeiXin.Base.csproj">
+      <Project>{f7c04ef4-3dd2-4ea6-a0d1-38bd7b4cd82c}</Project>
+      <Name>Express.WeiXin.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

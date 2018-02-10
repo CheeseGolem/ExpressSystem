@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WeChatWebSite</RootNamespace>
     <AssemblyName>WeChatWebSite</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,33 +39,84 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin, Version=4.18.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Senparc.Weixin.4.18.12\lib\net40\Senparc.Weixin.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin.MP, Version=14.8.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Senparc.Weixin.MP.14.8.12\lib\net40\Senparc.Weixin.MP.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Comment\Comment.aspx" />
+    <Content Include="Content\Images\banner.jpg" />
+    <Content Include="Content\Images\pic_160.png" />
     <Content Include="Content\weui\weui.css" />
     <Content Include="Content\weui\weui.min.css" />
     <Content Include="ExpressQuery.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="MyExpress\MyExpress.aspx" />
+    <Content Include="SendExpress\SendExpress.aspx" />
+    <Content Include="UserBind\UserBind.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Weixin.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Comment\Comment.aspx.cs">
+      <DependentUpon>Comment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Comment\Comment.aspx.designer.cs">
+      <DependentUpon>Comment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MyExpress\MyExpress.aspx.cs">
+      <DependentUpon>MyExpress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyExpress\MyExpress.aspx.designer.cs">
+      <DependentUpon>MyExpress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SendExpress\SendExpress.aspx.cs">
+      <DependentUpon>SendExpress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SendExpress\SendExpress.aspx.designer.cs">
+      <DependentUpon>SendExpress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserBind\UserBind.ashx.cs">
+      <DependentUpon>UserBind.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\AccountHelper.cs" />
     <Compile Include="ExpressQuery.aspx.cs">
       <DependentUpon>ExpressQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -71,7 +124,15 @@
     <Compile Include="ExpressQuery.aspx.designer.cs">
       <DependentUpon>ExpressQuery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\BaseHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserBind\UserBind.aspx.cs">
+      <DependentUpon>UserBind.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserBind\UserBind.aspx.designer.cs">
+      <DependentUpon>UserBind.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WeChat.Master.cs">
       <DependentUpon>WeChat.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -79,8 +140,13 @@
     <Compile Include="WeChat.Master.designer.cs">
       <DependentUpon>WeChat.Master</DependentUpon>
     </Compile>
+    <Compile Include="Weixin.aspx.cs">
+      <DependentUpon>Weixin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UserBind\UserBind.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -89,6 +155,25 @@
     </None>
     <Content Include="WeChat.Master" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Express.Bll\Express.Bll.csproj">
+      <Project>{d35a132f-25d6-48ce-8b7e-47e0a52a4bd3}</Project>
+      <Name>Express.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Express.Common\Express.Common.csproj">
+      <Project>{0c520371-b049-41cb-ac51-cbe3c1ea1b44}</Project>
+      <Name>Express.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Express.Model\Express.Model.csproj">
+      <Project>{fb25ff17-5981-40e2-bd71-ff509b43c74b}</Project>
+      <Name>Express.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Express.WeiXin.Base\Express.WeiXin.Base.csproj">
+      <Project>{f7c04ef4-3dd2-4ea6-a0d1-38bd7b4cd82c}</Project>
+      <Name>Express.WeiXin.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

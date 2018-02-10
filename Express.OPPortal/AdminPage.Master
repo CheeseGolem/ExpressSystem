@@ -98,7 +98,7 @@
                     <li module="WeChatMenu" onclick="javascript:location.href='/UserInfo/List.aspx'">
                         <a><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;微信用户浏览</a>
                     </li>
-                    <li module="WeChatMenu" onclick="javascript:location.href='/WeChatMenu/List.aspx'">
+                    <li module="WeChatMenu" onclick="javascript:location.href='/Comment/List.aspx'">
                         <a><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;微信评价回复</a>
                     </li>
                     <li module="WeChatMenu" onclick="javascript:location.href='/WeChatMenu/List.aspx'">

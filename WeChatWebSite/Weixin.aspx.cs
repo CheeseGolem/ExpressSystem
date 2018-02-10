@@ -8,11 +8,12 @@ using System.Web.UI.WebControls;
 
 namespace Senparc.Weixin.MP.Sample.WebForms
 {
-    using Senparc.Weixin.MP.Entities.Request;    
+    using CommonService.CustomMessageHandler;
+    using Express.WeiXin;
+    using Senparc.Weixin.MP.Entities.Request;
 
     public partial class Weixin : System.Web.UI.Page
-    {
-        private readonly string Token = "weixin";//与微信公众账号后台的Token设置保持一致，区分大小写。
+    {        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,13 +25,13 @@ namespace Senparc.Weixin.MP.Sample.WebForms
             if (Request.HttpMethod == "GET")
             {
                 //get method - 仅在微信后台填写URL验证时触发
-                if (CheckSignature.Check(signature, timestamp, nonce, Token))
+                if (CheckSignature.Check(signature, timestamp, nonce, WeiXinConfigBase.Token))
                 {
                     WriteContent(echostr); //返回随机字符串则表示验证通过
                 }
                 else
                 {
-                    WriteContent("failed:" + signature + "," + CheckSignature.GetSignature(timestamp, nonce, Token) + "。" +
+                    WriteContent("failed:" + signature + "," + CheckSignature.GetSignature(timestamp, nonce, WeiXinConfigBase.Token) + "。" +
                                 "如果你在浏览器中看到这句话，说明此地址可以被作为微信公众账号后台的Url，请注意保持Token一致。");
                 }
                 Response.End();
@@ -38,7 +39,7 @@ namespace Senparc.Weixin.MP.Sample.WebForms
             else
             {
                 //post method - 当有用户想公众账号发送消息时触发
-                if (!CheckSignature.Check(signature, timestamp, nonce, Token))
+                if (!CheckSignature.Check(signature, timestamp, nonce, WeiXinConfigBase.Token))
                 {
                     WriteContent("参数错误！");
                     return;
@@ -52,9 +53,9 @@ namespace Senparc.Weixin.MP.Sample.WebForms
                     Timestamp = Request.QueryString["timestamp"],
                     Nonce = Request.QueryString["nonce"],
                     //以下保密信息不会（不应该）在网络上传播，请注意
-                    Token = Token,
-                    EncodingAESKey = "mNnY5GekpChwqhy2c4NBH90g3hND6GeI4gii2YCvKLY",//根据自己后台的设置保持一致
-                    AppId = "wx669ef95216eef885"//根据自己后台的设置保持一致
+                    Token = WeiXinConfigBase.Token,
+                    EncodingAESKey = WeiXinConfigBase.EncodingAESKey,//根据自己后台的设置保持一致
+                    AppId = WeiXinConfigBase.AppID//根据自己后台的设置保持一致
                 };
 
                 //v4.2.2之后的版本，可以设置每个人上下文消息储存的最大数量，防止内存占用过多，如果该参数小于等于0，则不限制
@@ -67,20 +68,20 @@ namespace Senparc.Weixin.MP.Sample.WebForms
                 {
                     //测试时可开启此记录，帮助跟踪数据，使用前请确保App_Data文件夹存在，且有读写权限。
                     messageHandler.RequestDocument.Save(
-                        Server.MapPath("~/App_Data/" + DateTime.Now.Ticks + "_Request_" +
+                        Server.MapPath("~/App_Code/Log/" + DateTime.Now.Ticks + "_Request_" +
                                        messageHandler.RequestMessage.FromUserName + ".txt"));
                     //执行微信处理过程
                     messageHandler.Execute();
                     //测试时可开启，帮助跟踪数据
                     messageHandler.ResponseDocument.Save(
-                        Server.MapPath("~/App_Data/" + DateTime.Now.Ticks + "_Response_" +
+                        Server.MapPath("~/App_Code/Log/" + DateTime.Now.Ticks + "_Response_" +
                                        messageHandler.ResponseMessage.ToUserName + ".txt"));
                     WriteContent(messageHandler.ResponseDocument.ToString());
                     return;
                 }
                 catch (Exception ex)
                 {
-                    using (TextWriter tw = new StreamWriter(Server.MapPath("~/App_Data/Error_" + DateTime.Now.Ticks + ".txt")))
+                    using (TextWriter tw = new StreamWriter(Server.MapPath("~/App_Code/Log/Error_" + DateTime.Now.Ticks + ".txt")))
                     {
                         tw.WriteLine(ex.Message);
                         tw.WriteLine(ex.InnerException.Message);
@@ -117,20 +118,20 @@ namespace Senparc.Weixin.MP.Sample.WebForms
             if (Request.HttpMethod == "GET")
             {
                 //get method - 仅在微信后台填写URL验证时触发
-                if (CheckSignature.Check(signature, timestamp, nonce, Token))
+                if (CheckSignature.Check(signature, timestamp, nonce, WeiXinConfigBase.Token))
                 {
                     WriteContent(echostr); //返回随机字符串则表示验证通过
                 }
                 else
                 {
-                    WriteContent("failed:" + signature + "," + CheckSignature.GetSignature(timestamp, nonce, Token));
+                    WriteContent("failed:" + signature + "," + CheckSignature.GetSignature(timestamp, nonce, WeiXinConfigBase.Token));
                 }
 
             }
             else
             {
                 //post method - 当有用户想公众账号发送消息时触发
-                if (!CheckSignature.Check(signature, timestamp, nonce, Token))
+                if (!CheckSignature.Check(signature, timestamp, nonce, WeiXinConfigBase.Token))
                 {
                     WriteContent("参数错误！");
                 }

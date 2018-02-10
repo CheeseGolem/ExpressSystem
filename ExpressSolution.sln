@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "实体", "实体", "{ADC810EB-9490-4463-BD41-AC35348F2367}"
 EndProject
@@ -14,8 +14,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{6C2D989C-F7CD-41D6-8B2D-7F95B8CB4D42}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WX", "WX", "{0F7C9172-132C-4E88-8B03-F6190212098B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackStageWeb", "BackStageWeb\BackStageWeb.csproj", "{6F255547-C1CD-406D-A0B2-B3D2F756BECB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Express.OPPortal", "Express.OPPortal\Express.OPPortal.csproj", "{00312498-ADFE-4550-9DE0-B3EB37C45649}"
 EndProject
@@ -31,16 +29,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Express.Bll", "Express.Bll\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChatWebSite", "WeChatWebSite\WeChatWebSite.csproj", "{5F91561C-FE84-4783-A5B2-AEEF52A3BB46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Express.WeiXin.Base", "Express.WeiXin.Base\Express.WeiXin.Base.csproj", "{F7C04EF4-3DD2-4EA6-A0D1-38BD7B4CD82C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6F255547-C1CD-406D-A0B2-B3D2F756BECB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F255547-C1CD-406D-A0B2-B3D2F756BECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F255547-C1CD-406D-A0B2-B3D2F756BECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F255547-C1CD-406D-A0B2-B3D2F756BECB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00312498-ADFE-4550-9DE0-B3EB37C45649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00312498-ADFE-4550-9DE0-B3EB37C45649}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00312498-ADFE-4550-9DE0-B3EB37C45649}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,12 +65,15 @@ Global
 		{5F91561C-FE84-4783-A5B2-AEEF52A3BB46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F91561C-FE84-4783-A5B2-AEEF52A3BB46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F91561C-FE84-4783-A5B2-AEEF52A3BB46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7C04EF4-3DD2-4EA6-A0D1-38BD7B4CD82C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7C04EF4-3DD2-4EA6-A0D1-38BD7B4CD82C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7C04EF4-3DD2-4EA6-A0D1-38BD7B4CD82C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7C04EF4-3DD2-4EA6-A0D1-38BD7B4CD82C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{6F255547-C1CD-406D-A0B2-B3D2F756BECB} = {0F7C9172-132C-4E88-8B03-F6190212098B}
 		{00312498-ADFE-4550-9DE0-B3EB37C45649} = {6C2D989C-F7CD-41D6-8B2D-7F95B8CB4D42}
 		{0C520371-B049-41CB-AC51-CBE3C1EA1B44} = {D821EBD7-6431-4524-8F32-F1760FDAAD9A}
 		{FB25FF17-5981-40E2-BD71-FF509B43C74B} = {ADC810EB-9490-4463-BD41-AC35348F2367}
@@ -82,6 +81,7 @@ Global
 		{FA1F4547-0130-4526-BF01-37D0CB7E739D} = {6F88B0AE-E0D9-4840-AD42-36283B91173B}
 		{D35A132F-25D6-48CE-8B7E-47E0A52A4BD3} = {7E7A6A3F-1930-4D61-B17E-7FE6D50C5D73}
 		{5F91561C-FE84-4783-A5B2-AEEF52A3BB46} = {0F7C9172-132C-4E88-8B03-F6190212098B}
+		{F7C04EF4-3DD2-4EA6-A0D1-38BD7B4CD82C} = {0F7C9172-132C-4E88-8B03-F6190212098B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F08AF38E-E965-4F9F-BE5A-599850EC03D1}

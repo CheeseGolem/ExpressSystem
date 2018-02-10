@@ -41,7 +41,9 @@
   <ItemGroup>
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Ep_Admin.cs" />
+    <Compile Include="Ep_Answer.cs" />
     <Compile Include="Ep_Express.cs" />
+    <Compile Include="Ep_Question.cs" />
     <Compile Include="Ep_Shelf.cs" />
     <Compile Include="Ep_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

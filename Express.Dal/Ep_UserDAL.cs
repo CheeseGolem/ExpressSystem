@@ -37,21 +37,27 @@ namespace Express.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into Ep_User(");
-            strSql.Append("Name,Phone,Address,WechatId,Remark)");
+            strSql.Append("Name,Phone,Address,NickName,OpenId,HeadImage,CreateTime,Remark)");
             strSql.Append(" values (");
-            strSql.Append("@Name,@Phone,@Address,@WechatId,@Remark)");
+            strSql.Append("@Name,@Phone,@Address,@NickName,@OpenId,@HeadImage,@CreateTime,@Remark)");
             strSql.Append(";select @@IDENTITY");
             SqlParameter[] parameters = {
                     new SqlParameter("@Name", SqlDbType.NVarChar,20),
                     new SqlParameter("@Phone", SqlDbType.VarChar,15),
                     new SqlParameter("@Address", SqlDbType.NVarChar,50),
-                    new SqlParameter("@WechatId", SqlDbType.VarChar,36),
+                    new SqlParameter("@NickName", SqlDbType.NVarChar,50),
+                    new SqlParameter("@OpenId", SqlDbType.VarChar,50),
+                    new SqlParameter("@HeadImage", SqlDbType.VarChar,200),
+                    new SqlParameter("@CreateTime", SqlDbType.DateTime,3),
                     new SqlParameter("@Remark", SqlDbType.NVarChar,200)};
             parameters[0].Value = model.Name;
             parameters[1].Value = model.Phone;
             parameters[2].Value = model.Address;
-            parameters[3].Value = model.WechatId;
-            parameters[4].Value = model.Remark;
+            parameters[3].Value = model.NickName;
+            parameters[4].Value = model.OpenId;
+            parameters[5].Value = model.HeadImage;
+            parameters[6].Value = model.CreateTime;
+            parameters[7].Value = model.Remark;
 
             object obj = DbHelperSQL.GetSingle(strSql.ToString(), parameters);
             if (obj == null)
@@ -73,22 +79,31 @@ namespace Express.DAL
             strSql.Append("Name=@Name,");
             strSql.Append("Phone=@Phone,");
             strSql.Append("Address=@Address,");
-            strSql.Append("WechatId=@WechatId,");
+            strSql.Append("NickName=@NickName,");
+            strSql.Append("OpenId=@OpenId,");
+            strSql.Append("HeadImage=@HeadImage,");
+            strSql.Append("CreateTime=@CreateTime,");
             strSql.Append("Remark=@Remark");
             strSql.Append(" where UserId=@UserId");
             SqlParameter[] parameters = {
                     new SqlParameter("@Name", SqlDbType.NVarChar,20),
                     new SqlParameter("@Phone", SqlDbType.VarChar,15),
                     new SqlParameter("@Address", SqlDbType.NVarChar,50),
-                    new SqlParameter("@WechatId", SqlDbType.VarChar,36),
+                    new SqlParameter("@NickName", SqlDbType.NVarChar,50),
+                    new SqlParameter("@OpenId", SqlDbType.VarChar,50),
+                    new SqlParameter("@HeadImage", SqlDbType.VarChar,200),
+                    new SqlParameter("@CreateTime", SqlDbType.DateTime,3),
                     new SqlParameter("@Remark", SqlDbType.NVarChar,200),
                     new SqlParameter("@UserId", SqlDbType.Int,4)};
             parameters[0].Value = model.Name;
             parameters[1].Value = model.Phone;
             parameters[2].Value = model.Address;
-            parameters[3].Value = model.WechatId;
-            parameters[4].Value = model.Remark;
-            parameters[5].Value = model.UserId;
+            parameters[3].Value = model.NickName;
+            parameters[4].Value = model.OpenId;
+            parameters[5].Value = model.HeadImage;
+            parameters[6].Value = model.CreateTime;
+            parameters[7].Value = model.Remark;
+            parameters[8].Value = model.UserId;
 
             int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)
@@ -152,7 +167,7 @@ namespace Express.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 UserId,Name,Phone,Address,WechatId,Remark from Ep_User ");
+            strSql.Append("select  top 1 UserId,Name,Phone,Address,NickName,OpenId,HeadImage,CreateTime,Remark from Ep_User ");
             strSql.Append(" where UserId=@UserId");
             SqlParameter[] parameters = {
                     new SqlParameter("@UserId", SqlDbType.Int,4)
@@ -196,9 +211,21 @@ namespace Express.DAL
                 {
                     model.Address = row["Address"].ToString();
                 }
-                if (row["WechatId"] != null)
+                if (row["NickName"] != null)
                 {
-                    model.WechatId = row["WechatId"].ToString();
+                    model.NickName = row["NickName"].ToString();
+                }
+                if (row["OpenId"] != null)
+                {
+                    model.OpenId = row["OpenId"].ToString();
+                }
+                if (row["HeadImage"] != null)
+                {
+                    model.HeadImage = row["HeadImage"].ToString();
+                }
+                if (row["CreateTime"] != null && row["CreateTime"].ToString() != "")
+                {
+                    model.CreateTime = DateTime.Parse(row["CreateTime"].ToString());
                 }
                 if (row["Remark"] != null)
                 {
@@ -214,7 +241,7 @@ namespace Express.DAL
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select UserId,Name,Phone,Address,WechatId,Remark ");
+            strSql.Append("select UserId,Name,Phone,Address,NickName,OpenId,HeadImage,CreateTime,Remark ");
             strSql.Append(" FROM Ep_User ");
             if (strWhere.Trim() != "")
             {
@@ -234,7 +261,7 @@ namespace Express.DAL
             {
                 strSql.Append(" top " + Top.ToString());
             }
-            strSql.Append(" UserId,Name,Phone,Address,WechatId,Remark ");
+            strSql.Append(" UserId,Name,Phone,Address,NickName,OpenId,HeadImage,CreateTime,Remark ");
             strSql.Append(" FROM Ep_User ");
             if (strWhere.Trim() != "")
             {

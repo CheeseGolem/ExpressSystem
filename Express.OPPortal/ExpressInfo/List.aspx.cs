@@ -69,11 +69,17 @@ namespace Express.OPPortal.ExpressInfo
                 //将Label控件的文本重新赋值
                 //if (!string.IsNullOrWhiteSpace(strUserId))
                 //{
-                    Ep_User model = new Ep_User();
-                    model = bllUser.GetModel(strUserId);
+                Ep_User model = new Ep_User();
+                model = bllUser.GetModel(strUserId);
+                if (model != null)
+                {
                     lblUserId.Text = model.Name.ToString();
                     lblPhone.Text = model.Phone.ToString();
-                //}                
+                }
+                else
+                {
+                    lblUserId.Text = "";
+                }
             }
         }
 

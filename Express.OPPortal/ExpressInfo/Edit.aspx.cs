@@ -110,10 +110,11 @@ namespace Express.OPPortal.ExpressInfo
                     {
                         try
                         {
-                            //modelUser.UserId = Guid.NewGuid().ToString();
-                            model.UserId = modelUser.UserId;
+                            //modelUser.UserId = Guid.NewGuid().ToString();                           
                             modelUser.Phone = txtPhone.Text;
                             bllUser.Add(modelUser);
+                            model.UserId = bllUser.GetModelList("").Where(o => o.Phone == modelUser.Phone).ToList()[0].UserId;
+                            //model.UserId = modelUser.UserId;
                         }
                         catch (Exception)
                         {

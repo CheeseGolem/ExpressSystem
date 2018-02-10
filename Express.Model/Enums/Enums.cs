@@ -101,4 +101,18 @@ namespace Express.Model
         [EnumDescription("大体积")]
         Large = 3,
     }
+
+    public enum CommentStatus
+    {
+        /// <summary>
+        /// 未回复
+        /// </summary>
+        [EnumDescription("未回复")]
+        Unanswered = 0,
+        /// <summary>
+        /// 已回复
+        /// </summary>
+        [EnumDescription("已回复")]
+        Replied = 1,
+    }
 }
