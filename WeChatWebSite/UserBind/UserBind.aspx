@@ -82,7 +82,7 @@
                     <input class="weui-input" type="number" placeholder="请输入验证码" id="vcode" runat="server">
                 </div>
                 <div class="weui-cell__ft">
-                    <img class="weui-vcode-img" src="./images/vcode.jpg">
+                    <%--<img class="weui-vcode-img" src="./images/vcode.jpg">--%>
                     <button type="button" class="weui-vcode-btn" onclick="getCode(this)">获取验证码</button>
                 </div>
             </div>
@@ -120,9 +120,9 @@
                 weui.alert('请输入手机号码');
                 return false;
             } else {
-                //if (!checkPhone($phone)) {
-                //    return false;
-                //}
+                if (!checkPhone($phone)) {
+                    return false;
+                }
             }
 
             return true;
@@ -153,8 +153,7 @@
                                 //debugger;
                                 weui.alert(data.MsgObjectContent)
                                 if (data.Result) {
-                                    var url = '@Request.QueryString["redirect_uri"]';
-                                    window.location.href = url;
+                                    weui.alert("绑定成功");
                                 }
                             }
                         }
@@ -197,7 +196,7 @@
                     error: function (result) {
                         weui.alert("发送失败，SeverError");
                     },
-                    success: function (data) {
+                    success: function (data) {                        
                         if (!data.Result) {
                             weui.alert(data.MsgObjectContent);
                         } else {

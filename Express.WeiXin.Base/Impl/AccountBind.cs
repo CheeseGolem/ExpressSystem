@@ -100,14 +100,15 @@ namespace WeiXin.Base.Impl
                 //{
                 //    return true;
                 //}
-                List<Ep_User> user = bllUser.GetModelList(" and openid='" + openid + "' ");
+                List<Ep_User> user = bllUser.GetModelList(" openid='" + openid + "' ");
                 if (user.Count >= 1)
                 {
                     return true;
                 }                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                
             }
 
             return false;

@@ -77,5 +77,27 @@
 
             document.getElementById("tcount").innerText = len;
         }
+
+        function sumbit() {
+            $.ajax({
+                url: 'comment.ashx',
+                type: 'Post',
+                data: {                    
+                    getmethod: 'GetQuestion',
+                    content: $("#txt_area").val()                    
+                },
+                error: function (result) {
+                    weui.alert("发送失败，SeverError");
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.Result) {
+                        weui.alert("提交成功")
+                    } else {
+                        weui.alert("提交失败")
+                    }
+                }
+            })
+        }
     </script>
 </asp:Content>

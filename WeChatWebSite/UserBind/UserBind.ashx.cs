@@ -34,12 +34,13 @@ namespace WeChatWebSite.Ajax
 
         public Msg CreateOpenid(HttpContext context)
         {
-            string code = context.Request.QueryString["code"];
-            code = HttpContext.Current.Session[WeiXinConfigBase.Code].ToString();
             Msg msg = new Msg();
-            msg.Result = false;
             try
             {
+                string code = context.Request.QueryString["code"];
+                code = HttpContext.Current.Session[WeiXinConfigBase.Code].ToString();                
+                msg.Result = false;
+
                 if (string.IsNullOrWhiteSpace(code))
                 {
                     msg.AddMsg("code为空，您拒绝了授权,请从微信客户端打开本程序");

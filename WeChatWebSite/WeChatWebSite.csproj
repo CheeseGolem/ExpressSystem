@@ -89,6 +89,9 @@
     <Compile Include="BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Comment\comment.ashx.cs">
+      <DependentUpon>comment.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Comment\Comment.aspx.cs">
       <DependentUpon>Comment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -124,7 +127,6 @@
     <Compile Include="ExpressQuery.aspx.designer.cs">
       <DependentUpon>ExpressQuery.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Code\BaseHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserBind\UserBind.aspx.cs">
       <DependentUpon>UserBind.aspx</DependentUpon>
@@ -147,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="UserBind\UserBind.ashx" />
+    <Content Include="Comment\comment.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
