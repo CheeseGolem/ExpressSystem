@@ -12,7 +12,7 @@
             <ItemTemplate>
                 <div class="weui-cell">
                     <div class="weui-cell__hd" style="position: relative; margin-right: 10px;">
-                        <img src="/Content/images/pic_160.png" style="width: 50px; display: block" />
+                        <img src="/Content/images/Express.jpg" style="width: 50px; display: block" />
                         <%--<span class="weui-badge" style="position: absolute; top: -.4em; right: -.4em;">8</span>--%>
                     </div>
                     <div class="weui-cell__bd">

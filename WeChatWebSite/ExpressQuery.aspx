@@ -2,8 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-    <div class="weui-cells__title">表单</div>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">    
     <div class="weui-cells weui-cells_form">
         <div class="weui-cell">
             <div class="weui-cell__hd">
@@ -51,8 +50,7 @@
                 <img class="weui-vcode-img" src="./images/vcode.jpg" />
             </div>
         </div>--%>
-    </div>
-    <div class="weui-cells__tips">底部说明文字底部说明文字</div>
+    </div>    
     <div class="weui-btn-area">
         <a class="weui-btn weui-btn_primary" href="javascript:" id="btnQuery">查询</a>
     </div>

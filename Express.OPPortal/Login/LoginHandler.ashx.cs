@@ -21,31 +21,19 @@ namespace Express.OPPortal.Ajax
             string strUsername = context.Request.Form["Username"];
             string strPassword = context.Request.Form["Password"];
             string strCaptcha = context.Request.Form["Captcha"];
-            string strIsAutoLogin = context.Request.Form["IsAutoLogin"];
-
+            string strIsAutoLogin = context.Request.Form["IsAutoLogin"];        
             //2.0 非空验证
             string msg = string.Empty;
             if (!CheckParameter(strUsername,strPassword,strCaptcha,out msg))
             {
-                //AjaxObject objAjax = new AjaxObject()
-                //{
-                //    Status = 1,
-                //    Msg = msg,
-                //};
-
-                //context.Response.Write(JsonHelper.Serialize(objAjax));//将对象转成JSON字符串
-                //context.Response.End();//结束响应 下面的代码不会执行
-
                 AjaxHelper.WriteErrorJson(msg);
             }         
-
             //3.0 验证验证码
             string sessionCaptcha = context.Session[Key.CAPTCHA].ToString();
             if (sessionCaptcha.ToLower()!=strCaptcha.ToLower())
             {
                 AjaxHelper.WriteErrorJson("验证码不匹配");
             }
-
             Ep_AdminBLL bllAdmin = new Ep_AdminBLL();
             //4.0 账户是否存在
             Ep_Admin model = bllAdmin.GetModelByUsername(strUsername);
@@ -53,24 +41,19 @@ namespace Express.OPPortal.Ajax
             {
                 AjaxHelper.WriteErrorJson("用户名不存在");
             }
-
             //5.0 账户是否被禁用
             if (model.Status == (int)UserStatus.Disable)
             {
                 AjaxHelper.WriteErrorJson("此用户已被禁用");
             }
-
             //6.0 密码是否正确
             if (model.Password!=strPassword)
             {
                 AjaxHelper.WriteErrorJson("用户名或密码错误");
             }
             //密码验证3次 计数保存在Session中
-
-
             //7.0 如果密码正确，登录成功，保存用户信息到Session
             context.Session[Key.CURRENT_USER] = model;        
-
             //8.0是否自动登录，生成cookie
             if (!string.IsNullOrWhiteSpace(strIsAutoLogin) && strIsAutoLogin.ToLower() == "true")
             {
