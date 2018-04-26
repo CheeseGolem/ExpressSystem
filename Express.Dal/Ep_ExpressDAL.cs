@@ -14,9 +14,9 @@ namespace Express.DAL
         { }
         #region  BasicMethod
         /// <summary>
-        /// 是否存在该记录
-        /// </summary>
-        public bool Exists(int ID)
+		/// 是否存在该记录
+		/// </summary>
+		public bool Exists(int ID)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select count(1) from Ep_Express");
@@ -37,9 +37,9 @@ namespace Express.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into Ep_Express(");
-            strSql.Append("ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,Type,Location)");
+            strSql.Append("ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,GetCode,Location)");
             strSql.Append(" values (");
-            strSql.Append("@ExpressId,@UserId,@Sender,@SendPhone,@Status,@Remark,@ArrivalTime,@GetTime,@Type,@Location)");
+            strSql.Append("@ExpressId,@UserId,@Sender,@SendPhone,@Status,@Remark,@ArrivalTime,@GetTime,@GetCode,@Location)");
             strSql.Append(";select @@IDENTITY");
             SqlParameter[] parameters = {
                     new SqlParameter("@ExpressId", SqlDbType.VarChar,36),
@@ -50,7 +50,7 @@ namespace Express.DAL
                     new SqlParameter("@Remark", SqlDbType.VarChar,200),
                     new SqlParameter("@ArrivalTime", SqlDbType.DateTime),
                     new SqlParameter("@GetTime", SqlDbType.DateTime),
-                    new SqlParameter("@Type", SqlDbType.Int,4),
+                    new SqlParameter("@GetCode", SqlDbType.Char,6),
                     new SqlParameter("@Location", SqlDbType.VarChar,20)};
             parameters[0].Value = model.ExpressId;
             parameters[1].Value = model.UserId;
@@ -60,7 +60,7 @@ namespace Express.DAL
             parameters[5].Value = model.Remark;
             parameters[6].Value = model.ArrivalTime;
             parameters[7].Value = model.GetTime;
-            parameters[8].Value = model.Type;
+            parameters[8].Value = model.GetCode;
             parameters[9].Value = model.Location;
 
             object obj = DbHelperSQL.GetSingle(strSql.ToString(), parameters);
@@ -88,7 +88,7 @@ namespace Express.DAL
             strSql.Append("Remark=@Remark,");
             strSql.Append("ArrivalTime=@ArrivalTime,");
             strSql.Append("GetTime=@GetTime,");
-            strSql.Append("Type=@Type,");
+            strSql.Append("GetCode=@GetCode,");
             strSql.Append("Location=@Location");
             strSql.Append(" where ID=@ID");
             SqlParameter[] parameters = {
@@ -100,7 +100,7 @@ namespace Express.DAL
                     new SqlParameter("@Remark", SqlDbType.VarChar,200),
                     new SqlParameter("@ArrivalTime", SqlDbType.DateTime),
                     new SqlParameter("@GetTime", SqlDbType.DateTime),
-                    new SqlParameter("@Type", SqlDbType.Int,4),
+                    new SqlParameter("@GetCode", SqlDbType.Char,6),
                     new SqlParameter("@Location", SqlDbType.VarChar,20),
                     new SqlParameter("@ID", SqlDbType.Int,4)};
             parameters[0].Value = model.ExpressId;
@@ -111,7 +111,7 @@ namespace Express.DAL
             parameters[5].Value = model.Remark;
             parameters[6].Value = model.ArrivalTime;
             parameters[7].Value = model.GetTime;
-            parameters[8].Value = model.Type;
+            parameters[8].Value = model.GetCode;
             parameters[9].Value = model.Location;
             parameters[10].Value = model.ID;
 
@@ -177,7 +177,7 @@ namespace Express.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 ID,ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,Type,Location from Ep_Express ");
+            strSql.Append("select  top 1 ID,ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,GetCode,Location from Ep_Express ");
             strSql.Append(" where ID=@ID");
             SqlParameter[] parameters = {
                     new SqlParameter("@ID", SqlDbType.Int,4)
@@ -241,9 +241,9 @@ namespace Express.DAL
                 {
                     model.GetTime = DateTime.Parse(row["GetTime"].ToString());
                 }
-                if (row["Type"] != null && row["Type"].ToString() != "")
+                if (row["GetCode"] != null)
                 {
-                    model.Type = int.Parse(row["Type"].ToString());
+                    model.GetCode = row["GetCode"].ToString();
                 }
                 if (row["Location"] != null)
                 {
@@ -259,7 +259,7 @@ namespace Express.DAL
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select ID,ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,Type,Location ");
+            strSql.Append("select ID,ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,GetCode,Location ");
             strSql.Append(" FROM Ep_Express ");
             if (strWhere.Trim() != "")
             {
@@ -279,7 +279,7 @@ namespace Express.DAL
             {
                 strSql.Append(" top " + Top.ToString());
             }
-            strSql.Append(" ID,ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,Type,Location ");
+            strSql.Append(" ID,ExpressId,UserId,Sender,SendPhone,Status,Remark,ArrivalTime,GetTime,GetCode,Location ");
             strSql.Append(" FROM Ep_Express ");
             if (strWhere.Trim() != "")
             {
@@ -424,7 +424,7 @@ namespace Express.DAL
 		public DataSet GetListEpUser(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();            
-            strSql.Append("select ID,ExpressId,Ep_User.UserId,Sender,SendPhone,Status,Ep_User.Remark,ArrivalTime,GetTime,Type,Location ");
+            strSql.Append("select ID,ExpressId,Ep_User.UserId,Sender,SendPhone,Status,Ep_User.Remark,ArrivalTime,GetTime,GetCode,Location ");
             strSql.Append(" from Ep_Express,Ep_User ");            
             if (strWhere.Trim() != "")
             {

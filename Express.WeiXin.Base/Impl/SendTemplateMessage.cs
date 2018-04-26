@@ -18,7 +18,7 @@ namespace HongYang.WeiXin.Base.Impl
     public class SendTemplateMessage
     {
         public Msg SendTemplateMessageAnswer(string openId, string url, int qId)
-        {            
+        {
             Msg msg = new Msg();
             //Ep_Question question = new Ep_Question();
             //Ep_Answer answer = new Ep_Answer();
@@ -55,22 +55,21 @@ namespace HongYang.WeiXin.Base.Impl
             return msg;
         }
 
-        public Msg SendTemplateMessageExpress(string openId, string url, int id)
+        public Msg SendTemplateMessageExpress(string openId, string epId, string code)
         {
             Msg msg = new Msg();
             Ep_ExpressBLL bllExpress = new Ep_ExpressBLL();
 
             string appId = WeiXinConfigBase.AppID;
             string templateId = "eD5PjZMSSC9MpPiFhk8n6LEA5aPwBeASdh7GzSXj58c";
-            string templateName = "快递到站提醒";
-            string expressId = bllExpress.GetModel(id).ExpressId;
+            string templateName = "快递到站提醒";            
             string expressAddress = "XX小区XX超市";
-            string code = "";
+            string url = "";
 
             var testData = new //TestTemplateData()
             {
                 first = new TemplateDataItem(templateName),
-                keyword1 = new TemplateDataItem(expressId),
+                keyword1 = new TemplateDataItem(epId),
                 keyword2 = new TemplateDataItem(expressAddress),
                 keyword3 = new TemplateDataItem(code),
                 remark = new TemplateDataItem(DateTime.Now.ToString())

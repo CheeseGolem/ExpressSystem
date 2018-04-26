@@ -10,10 +10,12 @@ namespace Express.OPPortal.ExpressInfo
     using Express.BLL;
     using Express.Common;
     using Express.Model;
+    using HongYang.WeiXin.Base.Impl;
 
     public partial class Edit : PageBase
     {
         Ep_ExpressBLL bllExpress = new Ep_ExpressBLL();
+        Ep_UserBLL bllUser = new Ep_UserBLL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -103,8 +105,8 @@ namespace Express.OPPortal.ExpressInfo
                 {
                     //model.ID = Guid.NewGuid().ToString();
                     model.ArrivalTime = DateTime.Now;
-
-                    Ep_UserBLL bllUser = new Ep_UserBLL();
+                    Random random = new Random();
+                    model.GetCode = random.Next(0, 999999).ToString("D6");
                     Ep_User modelUser = new Ep_User();
                     if (!bllUser.Exists(model.UserId))
                     {
@@ -124,8 +126,28 @@ namespace Express.OPPortal.ExpressInfo
                     }
 
                     bllExpress.Add(model);
-                    ScriptHelper.AlertRedirect("添加成功", "/ExpressInfo/List.aspx");
+                    SendTempMsg(model.UserId, model.ExpressId, model.GetCode);
+                    ScriptHelper.AlertRedirect("快递添加成功", "/ExpressInfo/List.aspx");
                 }
+            }
+        }
+
+        private void SendTempMsg(int userId, string epId, string code)
+        {
+            Msg msg = new Msg();
+
+            string openId = bllUser.GetModel(userId).OpenId;
+
+            string baseUrl = AppDomain.CurrentDomain.BaseDirectory;
+            SendTemplateMessage bllWx = new SendTemplateMessage();
+            msg = bllWx.SendTemplateMessageExpress(openId, epId, code);
+            if (msg.Result)
+            {
+                ScriptHelper.Alert("消息发送成功");
+            }
+            else
+            {
+                ScriptHelper.Alert("消息发送失败" + msg.ToString() + "请尝试手动发送");
             }
         }
     }

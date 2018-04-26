@@ -10,6 +10,7 @@ namespace Express.OPPortal.ExpressInfo
     using Express.BLL;
     using Express.Common;
     using Express.Model;
+    using HongYang.WeiXin.Base.Impl;
     using System.Text;
 
     public partial class List : PageBase
@@ -38,24 +39,46 @@ namespace Express.OPPortal.ExpressInfo
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)//AlternatingItem 间隔行
             {
-                //在当前行中查询指定控件
-                Label lblStatus = e.Item.FindControl("lblStatus") as Label;
+                ////在当前行中查询指定控件
+                //Label lblStatus = e.Item.FindControl("lblStatus") as Label;
+                ////获取控件中的文本
+                //string strExpressStatus = lblStatus.Text;//用户状态值
+                ////转换枚举
+                //ExpressStatus enumExpressStatus = (ExpressStatus)Enum.Parse(typeof(ExpressStatus), strExpressStatus);
+                ////获取枚举描述
+                //strExpressStatus = Convert.ToInt32(strExpressStatus).GetDescription<ExpressStatus>();
+                ////将Label控件的文本重新赋值
+                //lblStatus.Text = strExpressStatus;
+                ////根据用户状态设置前景色
+                //switch (enumExpressStatus)
+                //{
+                //    case ExpressStatus.TimeOut:
+                //        lblStatus.ForeColor = System.Drawing.Color.Red;
+                //        break;
+                //    case ExpressStatus.Received:
+                //        lblStatus.ForeColor = System.Drawing.Color.Green;
+                //        break;
+                //    default:
+                //        break;
+                //}
+
+                LinkButton lbtnStatus = e.Item.FindControl("lbtnStatus") as LinkButton;
                 //获取控件中的文本
-                string strExpressStatus = lblStatus.Text;//用户状态值
+                string strExpressStatus = lbtnStatus.Text;//用户状态值
                 //转换枚举
                 ExpressStatus enumExpressStatus = (ExpressStatus)Enum.Parse(typeof(ExpressStatus), strExpressStatus);
                 //获取枚举描述
                 strExpressStatus = Convert.ToInt32(strExpressStatus).GetDescription<ExpressStatus>();
                 //将Label控件的文本重新赋值
-                lblStatus.Text = strExpressStatus;
+                lbtnStatus.Text = strExpressStatus;
                 //根据用户状态设置前景色
                 switch (enumExpressStatus)
                 {
                     case ExpressStatus.TimeOut:
-                        lblStatus.ForeColor = System.Drawing.Color.Red;
+                        lbtnStatus.ForeColor = System.Drawing.Color.Red;
                         break;
                     case ExpressStatus.Received:
-                        lblStatus.ForeColor = System.Drawing.Color.Green;
+                        lbtnStatus.ForeColor = System.Drawing.Color.Green;
                         break;
                     default:
                         break;
@@ -85,11 +108,18 @@ namespace Express.OPPortal.ExpressInfo
 
         protected void repExpressList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            string[] comArg = e.CommandArgument.ToString().Split(',');
+            int expressId = Convert.ToInt32(comArg[0]);
             switch (e.CommandName)
             {
                 case "Del":
-                    int expressId = Convert.ToInt32(e.CommandArgument);
                     DeleteExpress(expressId);
+                    break;
+                case "Send":
+                    SendTempMsg(expressId);
+                    break;
+                case "Change":
+                    ChangeStatus(expressId, comArg[1]);
                     break;
                 default:
                     break;
@@ -105,6 +135,53 @@ namespace Express.OPPortal.ExpressInfo
             else
             {
                 ScriptHelper.Alert("删除失败");
+            }
+        }
+
+        private void SendTempMsg(int epId)
+        {
+            Msg msg = new Msg();
+            Ep_Express entityEp = new Ep_Express();
+            entityEp = bllExpress.GetModel(epId);
+            string openId = bllUser.GetModel(entityEp.UserId).OpenId;
+
+            string baseUrl = AppDomain.CurrentDomain.BaseDirectory;
+            SendTemplateMessage bllWx = new SendTemplateMessage();
+            msg = bllWx.SendTemplateMessageExpress(openId, entityEp.ExpressId, entityEp.GetCode);
+            if (msg.Result)
+            {
+                ScriptHelper.Alert("消息发送成功");
+            }
+            else
+            {
+                ScriptHelper.Alert("消息发送失败" + msg.ToString() + "请重新发送");
+            }
+        }
+
+        private void ChangeStatus(int id, string status)
+        {
+            Ep_Express entity = new Ep_Express();
+            entity = bllExpress.GetModel(id);
+            if (status == "0")
+            {
+                entity.Status = 1;
+                entity.GetTime = DateTime.Now;
+            }
+            else if (status == "1")
+            {
+                entity.Status = 2;                
+            }
+            else
+            {
+                entity.Status = 0;
+            }
+            if (bllExpress.Update(entity))
+            {
+                ScriptHelper.Refresh();
+            }
+            else
+            {
+                ScriptHelper.Alert("状态切换失败");
             }
         }
 

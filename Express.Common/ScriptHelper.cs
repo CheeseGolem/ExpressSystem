@@ -47,6 +47,14 @@ namespace Express.Common
         }
 
         /// <summary>
+        /// 刷新当前页面
+        /// </summary>
+        public static void Refresh()
+        {
+            ExecuteScript("window.location.href=window.location.href;");
+        }
+
+        /// <summary>
         /// 执行脚本
         /// </summary>
         /// <param name="script"></param>

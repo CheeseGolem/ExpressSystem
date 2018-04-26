@@ -10,9 +10,9 @@ namespace Express.BLL
 	/// </summary>
 	public partial class Ep_ExpressBLL
 	{
-		private readonly Express.DAL.Ep_ExpressDAL dal=new Express.DAL.Ep_ExpressDAL();
-		public Ep_ExpressBLL()
-		{}
+        private readonly Express.DAL.Ep_ExpressDAL dal = new Express.DAL.Ep_ExpressDAL();
+        public Ep_ExpressBLL()
+        { }
         #region  BasicMethod
         /// <summary>
         /// 是否存在该记录

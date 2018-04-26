@@ -19,7 +19,7 @@ namespace Express.Model
 		private string _remark;
 		private DateTime? _arrivaltime;
 		private DateTime? _gettime;
-		private int? _type;
+		private string _getcode;
 		private string _location;
         /// <summary>
         /// 
@@ -96,10 +96,10 @@ namespace Express.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int? Type
-		{
-			set{ _type=value;}
-			get{return _type;}
+		public string GetCode
+        {
+			set{ _getcode=value;}
+			get{return _getcode;}
 		}
 		/// <summary>
 		/// 

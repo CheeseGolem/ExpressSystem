@@ -1,6 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPage.Master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="Express.OPPortal.ExpressInfo.List" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        th {
+            text-align: center;
+        }
+
+        .link:hover {
+            text-decoration: none;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="right" runat="server">
     <div class="query">
@@ -45,6 +54,7 @@
             <th>状态</th>
             <th>到站时间</th>
             <th>领取时间</th>
+            <th>取件码</th>
             <th>备注</th>
             <th>操作</th>
         </tr>
@@ -59,12 +69,16 @@
                         <asp:Label ID="lblPhone" runat="server" Text='<%#Eval("SendPhone")%>'></asp:Label>
                     </td>
                     <td>
-                        <asp:Label ID="lblStatus" runat="server" Text='<%#Eval("Status") %>'></asp:Label>
+                        <%--<asp:Label ID="lblStatus" runat="server" Text='<%#Eval("Status") %>'></asp:Label>--%>
+                        <asp:LinkButton ID="lbtnStatus" runat="server" CssClass="link" CommandName="Change" CommandArgument='<%#Eval("ID")+","+Eval("Status")%>' Text='<%#Eval("Status") %>'><%#Eval("Status") %></asp:LinkButton>
                     </td>
                     <td><%#Eval("ArrivalTime")%></td>
                     <td><%#Eval("GetTime")%></td>
+                    <td><%#Eval("GetCode") %></td>
                     <td><%#Eval("Remark")%></td>
                     <td>
+                        <asp:LinkButton ID="lbtnSend" runat="server" CommandName="Send" CommandArgument='<%#Eval("ID")%>' OnClientClick="return confirm('确认发送消息吗？');">发送</asp:LinkButton>
+                        &nbsp;
                         <a href="<%#"javascript:location.href='/ExpressInfo/Edit.aspx?id="+ Eval("ID") +"'" %>">修改</a>
                         &nbsp;
                         <asp:LinkButton ID="lbtnDel" runat="server" CommandName="Del" CommandArgument='<%#Eval("ID")%>' OnClientClick="return confirm('确认删除吗？');">删除</asp:LinkButton>

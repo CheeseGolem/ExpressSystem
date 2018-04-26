@@ -78,7 +78,7 @@ namespace Express.OPPortal.Comment
             string openId = bllQue.GetModel(qId).Openid;
             
             string baseUrl = AppDomain.CurrentDomain.BaseDirectory;
-            string url = baseUrl + "ART/Consultation/AnswerDetail?qid=" + qId;
+            string url = baseUrl + "Comment/Comment.aspx?qid=" + qId;
             SendTemplateMessage bllWx = new SendTemplateMessage();
             msg = bllWx.SendTemplateMessageAnswer(openId, url, qId);
             if (msg.Result)
