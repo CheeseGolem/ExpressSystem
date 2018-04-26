@@ -41,7 +41,8 @@ namespace WeChatWebSite.Comment
             msg.Result = false;
 
             string content = context.Request["content"] != null ? context.Request["content"].ToString() : "";
-            string openid = HttpContext.Current.Session[WeiXinConfigBase.OpenidKey].ToString();
+            //string openid = HttpContext.Current.Session[WeiXinConfigBase.OpenidKey].ToString();
+            string openid = WeiXinConfigBase.OpenId;
 
             Ep_Question model = new Ep_Question();
             model.Openid = openid;
@@ -55,8 +56,8 @@ namespace WeChatWebSite.Comment
             }
             catch (Exception ex)
             {
-                msg.AddMsg(ex.Message);                
-            }            
+                msg.AddMsg(ex.Message);
+            }
             msg.MsgObjectContent = msg.ToString();
             var s = JsonHelper.Serialize(msg);
             context.Response.Write(JsonHelper.Serialize(msg));

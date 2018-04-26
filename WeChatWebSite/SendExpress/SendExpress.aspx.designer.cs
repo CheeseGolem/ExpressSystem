@@ -7,9 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WeChatWebSite.SendExpress {
-    
-    
-    public partial class SendExpress {
-    }
+
+
+public partial class Express_SendExpress {
 }

@@ -43,6 +43,7 @@
     <Compile Include="Ep_AnswerDAL.cs" />
     <Compile Include="Ep_ExpressDAL.cs" />
     <Compile Include="Ep_QuestionDAL.cs" />
+    <Compile Include="Ep_SendExpressDAL.cs" />
     <Compile Include="Ep_ShelfDAL.cs" />
     <Compile Include="Ep_UserDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WeChatWebSite.Ajax
+namespace WeChatWebSite.A
 {
     using Senparc.Weixin;
     using Senparc.Weixin.MP.AdvancedAPIs;
@@ -83,7 +83,8 @@ namespace WeChatWebSite.Ajax
             string bindname = context.Request["bindname"] != null ? context.Request["bindname"].ToString() : "";
             string vcode = context.Request["vcode"] != null ? context.Request["vcode"].ToString() : "";
             string phone = context.Request["phone"] != null ? context.Request["phone"].ToString() : "";
-            string openid = HttpContext.Current.Session[WeiXinConfigBase.OpenidKey].ToString();
+            //string openid = HttpContext.Current.Session[WeiXinConfigBase.OpenidKey].ToString();
+            string openid = WeiXinConfigBase.OpenId;
 
             //if (context.Session[WeiXinConfigBase.VcodeKey] == null || !UserSmsServices.isSmsTimeEffective(openid, bindhaoma, phone, 5))//验证码有效期内没给用户发送成功的验码
             if (false)
@@ -109,6 +110,7 @@ namespace WeChatWebSite.Ajax
                     {
                         //msg = WeiXin.ART.Impl.UserService.CheckHisTel(bindhaoma, bindname, bindsex, idcardno, phone);
                         msg = _AccountBind.UserBinding(bindname, phone, openid);
+
                         if (msg.Result)
                         {
                             //AccountHelper.RefreshAccount(context.Session[WeiXinConfigBase.OpenidKey].ToString());//刷先用户缓存

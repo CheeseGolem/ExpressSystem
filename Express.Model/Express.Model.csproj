@@ -44,6 +44,7 @@
     <Compile Include="Ep_Answer.cs" />
     <Compile Include="Ep_Express.cs" />
     <Compile Include="Ep_Question.cs" />
+    <Compile Include="Ep_SendExpress.cs" />
     <Compile Include="Ep_Shelf.cs" />
     <Compile Include="Ep_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

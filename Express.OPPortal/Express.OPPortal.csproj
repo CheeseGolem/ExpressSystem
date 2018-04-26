@@ -121,6 +121,7 @@
     <Content Include="ExpressInfo\List.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Index.aspx" />
+    <Content Include="SendExpress\List.aspx" />
     <Content Include="UserInfo\List.aspx" />
     <Content Include="LocationInfo\Edit.aspx" />
     <Content Include="LocationInfo\List.aspx" />
@@ -180,6 +181,13 @@
     </Compile>
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SendExpress\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SendExpress\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserInfo\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>

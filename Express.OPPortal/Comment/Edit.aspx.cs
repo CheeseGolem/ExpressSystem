@@ -76,8 +76,7 @@ namespace Express.OPPortal.Comment
 
             int qId = bllAns.GetModel(aId).QId;
             string openId = bllQue.GetModel(qId).Openid;
-
-
+            
             string baseUrl = AppDomain.CurrentDomain.BaseDirectory;
             string url = baseUrl + "ART/Consultation/AnswerDetail?qid=" + qId;
             SendTemplateMessage bllWx = new SendTemplateMessage();
@@ -134,7 +133,7 @@ namespace Express.OPPortal.Comment
                     }
                     ScriptHelper.AlertRedirect("回复成功", "/Comment/Edit.aspx?id=" + answer.QId);
                 }
-            }            
+            }
         }
     }
 }

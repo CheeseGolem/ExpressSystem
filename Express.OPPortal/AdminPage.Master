@@ -101,8 +101,8 @@
                     <li module="WeChatMenu" onclick="javascript:location.href='/Comment/List.aspx'">
                         <a><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;微信评价回复</a>
                     </li>
-                    <li module="WeChatMenu" onclick="javascript:location.href='/WeChatMenu/List.aspx'">
-                        <a><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;微信菜单配置</a>
+                    <li module="WeChatMenu" onclick="javascript:location.href='/SendExpress/List.aspx'">
+                        <a><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;微信寄件管理</a>
                     </li>
                 </ul>
             </div>
@@ -138,6 +138,7 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="/Content/bootstrap/js/bootstrap.min.js"></script>
     <script src="/Content/js/twitter-bootstrap-hover-dropdown.min.js"></script>
+    <script src="/Content/My97DatePicker/WdatePicker.js"></script>
     <asp:ContentPlaceHolder ID="foot" runat="server">
     </asp:ContentPlaceHolder>
 

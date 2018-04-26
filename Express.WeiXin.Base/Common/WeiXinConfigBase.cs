@@ -60,6 +60,10 @@ namespace Express.WeiXin
         /// </summary>
         public static string Token = ConfigurationManager.AppSettings["Token"];
         /// <summary>
+        /// 
+        /// </summary>
+        public static string OpenId = ConfigurationManager.AppSettings["wx_debugOpenid"];
+        /// <summary>
         /// 消息加解密密钥(没有设置)
         /// </summary>
         public static string EncodingAESKey = ConfigurationManager.AppSettings["EncodingAESKey"];

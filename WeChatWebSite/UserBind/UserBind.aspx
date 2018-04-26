@@ -53,7 +53,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <div class="">
         <div class="weui-cell">
-            <img src="../Content/Images/banner.jpg" style="height: 180px;width:100%" />            
+            <img src="../Content/Images/banner.jpg" style="height: 180px; width: 100%" />
         </div>
         <div class="weui-cells weui-cells_form">
             <div class="weui-cell">
@@ -145,17 +145,28 @@
                         },
                         error: function (result) {
                             weui.alert("绑定失败！" + result.MsgObjectContent)
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 1500);
                         },
                         success: function (data) {
-                            if (typeof (data.Result) == "undefined") {
-                                window.location.href = data;
-                            } else {
-                                //debugger;
-                                weui.alert(data.MsgObjectContent)
-                                if (data.Result) {
-                                    weui.alert("绑定成功");
-                                }
+                            data = $.parseJSON(data);
+                            if (data.Result) {
+                                $.alert("绑定成功");
                             }
+                            else {
+                                $.alert(data.MsgObjectContent);
+                            }
+
+                            //if (typeof (data.Result) == "undefined") {
+                            //    window.location.href = data;
+                            //} else {
+                            //    //debugger;
+                            //    weui.alert(data.MsgObjectContent)
+                            //    if (data.Result) {
+                            //        weui.alert("绑定成功");
+                            //    }
+                            //}
                         }
                     };
                     $.ajax(ajaxoption);
@@ -192,11 +203,11 @@
                 var ajaxoption = {
                     url: '@Url.Action("SendPhoneSMS", "Home")',
                     type: 'Post',
-                    data: { bindhaoma: bindhaoma, bindname: $xingming.val(), bindsex: sex, idcardno: $shenfenzheng.val(), phonenumber: $phone.val() },
+                    data: { bindname: $xingming.val(), bindsex: sex, idcardno: $shenfenzheng.val(), phonenumber: $phone.val() },
                     error: function (result) {
                         weui.alert("发送失败，SeverError");
                     },
-                    success: function (data) {                        
+                    success: function (data) {
                         if (!data.Result) {
                             weui.alert(data.MsgObjectContent);
                         } else {

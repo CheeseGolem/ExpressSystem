@@ -102,6 +102,9 @@ namespace Express.Model
         Large = 3,
     }
 
+    /// <summary>
+    /// 回复状态
+    /// </summary>
     public enum CommentStatus
     {
         /// <summary>
@@ -114,5 +117,27 @@ namespace Express.Model
         /// </summary>
         [EnumDescription("已回复")]
         Replied = 1,
+    }
+
+    /// <summary>
+    /// 寄件状态
+    /// </summary>
+    public enum SendStatus
+    {
+        /// <summary>
+        /// 未接收
+        /// </summary>
+        [EnumDescription("未接收")]
+        Unclaimed = 0,
+        /// <summary>
+        /// 已接收
+        /// </summary>
+        [EnumDescription("已接收")]
+        Received = 1,
+        /// <summary>
+        /// 已发送
+        /// </summary>
+        [EnumDescription("已发送")]
+        Sent = 2,
     }
 }

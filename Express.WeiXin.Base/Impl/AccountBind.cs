@@ -15,7 +15,7 @@ namespace WeiXin.Base.Impl
 
     public class AccountBind
     {
-        Ep_UserBLL bllUser = new Ep_UserBLL();
+        static Ep_UserBLL bllUser = new Ep_UserBLL();
 
         public Msg UserBinding(string bindname, string phone, string openid)
         {
@@ -27,17 +27,18 @@ namespace WeiXin.Base.Impl
 
             //string user_id = "";//用来存储user_d作为副键，关联两张表
 
-            user = GetEp_userByWeiXin(openid);
-            user.Name = bindname;
-            user.Phone = phone;
+
             try
             {
-                bllUser.Add(user);
+                user = GetEp_userByWeiXin(openid);
+                user.Name = bindname;
+                user.Phone = phone;
+
+                msg.Result = bllUser.Add(user) > 0;
             }
             catch (Exception e)
             {
-                string s = e.Message;
-                throw;
+                msg.AddMsg(e.ToString());
             }
 
             string strWhere = " and openid='" + openid + "' ";
@@ -68,7 +69,7 @@ namespace WeiXin.Base.Impl
         {
             Ep_User user = new Ep_User();
             try
-            {
+            {                
                 UserInfoJson WxUser = UserApi.Info(WeiXinConfigBase.AppID, openid);
                 //user.UserId = Guid.NewGuid().ToString();
                 user.HeadImage = WxUser.headimgurl;
@@ -83,6 +84,11 @@ namespace WeiXin.Base.Impl
                 return null;
             }
             return user;
+        }
+
+        public static int GetUserIdByOpenId(string openId)
+        {
+            return bllUser.GetModelList(" openid='" + openId + "' ")[0].UserId;
         }
 
         /// <summary>
@@ -104,11 +110,11 @@ namespace WeiXin.Base.Impl
                 if (user.Count >= 1)
                 {
                     return true;
-                }                
+                }
             }
             catch (Exception ex)
             {
-                
+
             }
 
             return false;

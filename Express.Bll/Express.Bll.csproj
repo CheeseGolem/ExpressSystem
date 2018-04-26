@@ -43,6 +43,7 @@
     <Compile Include="Ep_AnswerBLL.cs" />
     <Compile Include="Ep_ExpressBLL.cs" />
     <Compile Include="Ep_QuestionBLL.cs" />
+    <Compile Include="Ep_SendExpressBLL.cs" />
     <Compile Include="Ep_ShelfBLL.cs" />
     <Compile Include="Ep_UserBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

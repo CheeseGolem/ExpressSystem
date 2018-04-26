@@ -4,7 +4,7 @@
     <style type="text/css">
         textarea {
             resize: none;
-            width: 80%;
+            width: 500px;
         }
 
         th{

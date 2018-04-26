@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WeChat.Master" AutoEventWireup="true" CodeBehind="SendExpress.aspx.cs" Inherits="WeChatWebSite.SendExpress.SendExpress" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WeChat.Master" AutoEventWireup="true" CodeBehind="SendExpress.aspx.cs" Inherits="Express_SendExpress" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .weui-cell {
@@ -62,6 +62,13 @@
         </div>
         
         <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">手机</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" id="txtPhone" placeholder="请输入收件人的联系方式" value="">
+            </div>
+        </div>
+
+        <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">地址</label></div>
             <div class="weui-cell__bd">
                 <input class="weui-input" type="text" id="txtAddress" placeholder="请输入收件人的地址">
@@ -70,34 +77,36 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">是否保价</label></div>
             <div class="weui-cell__bd">
-                <select class="weui-select select" id="sltExpensive">
-                    <option value="0">是</option>
-                    <option value="1" selected="selected">否</option>
+                <select class="weui-select select" id="sltExpensive">                    
+                    <option value="0" selected="selected">否</option>
+                    <option value="1">是</option>
                 </select>
             </div>
         </div>
-        <%--<div class="weui-cell ">
-            <div class="weui-cell__hd">
-                <div class="weui-cell__hd"><label class="weui-label">手机号码</label></div>
-            </div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入您就诊预留的手机号码" title="正确格式的号码" id="phone" name="Tel">
-            </div>
-        </div>
-        <div class="weui-cell weui-cell_vcode">
-            <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" type="number" placeholder="请输入验证码" id="vcode">
-            </div>
-            <div class="weui-cell__ft">
-                @*<img class="weui-vcode-img" src="./images/vcode.jpg">*@
-                <button type="button" class="weui-vcode-btn" onclick="getCode(this)">获取验证码</button>
-            </div>
-        </div>--%>
     </div>
     <div class="center weixinpadding">
-        <button onclick="Binding()" class="weui-btn weui-btn_primary">确认</button>
+        <input id="btnConfirm" class="weui-btn weui-btn_primary" value="确认" />
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="foot" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            sendExpress();
+        })
+
+        function sendExpress() {
+            $('#btnConfirm').click(function () {
+                var name = $('#txtName').val();
+            var phone = $('#txtPhone').val();
+            var address = $('#txtAddress').val();
+            var isExp = $('#sltExpensive').val();            
+            var obj = Express_SendExpress.AddExpress(name, phone, address, isExp);
+            if (obj) {
+                weui.alert('添加成功！');
+            } else {
+                weui.alert("添加失败！");
+            }
+            })            
+        }
+    </script>
 </asp:Content>
