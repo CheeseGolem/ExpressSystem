@@ -76,9 +76,10 @@ namespace Express.OPPortal.Comment
 
             int qId = bllAns.GetModel(aId).QId;
             string openId = bllQue.GetModel(qId).Openid;
-            
-            string baseUrl = AppDomain.CurrentDomain.BaseDirectory;
-            string url = baseUrl + "Comment/Comment.aspx?qid=" + qId;
+
+            //string baseUrl = AppDomain.CurrentDomain.BaseDirectory;
+            string baseUrl = Request.Url.Host.ToString() + Request.Url.Segments[0] + Request.Url.Segments[1];
+            string url = baseUrl + "AnswerDetail.aspx?qid=" + qId;
             SendTemplateMessage bllWx = new SendTemplateMessage();
             msg = bllWx.SendTemplateMessageAnswer(openId, url, qId);
             if (msg.Result)
@@ -93,47 +94,54 @@ namespace Express.OPPortal.Comment
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (rfvAnswer.IsValid)
+            //if (rfvAnswer.IsValid)
+            //{
+
+            if (txtAnswer.Value == null || txtAnswer.Value == "")
             {
-                Ep_Answer answer = new Ep_Answer();
-                if (hidAnsId.Value != null && hidAnsId.Value != "")
-                {
-                    //编辑
-                    int aId = Convert.ToInt32(hidAnsId.Value);
+                ScriptHelper.Alert("请输入回复！");
+                return;
+            }
 
-                    answer = bllAns.GetModel(aId);
-                    try
-                    {
-                        answer.AContent = txtAnswer.Value;
-                        answer.ATime = DateTime.Now;
-                        bllAns.Update(answer);
-                    }
-                    catch (Exception ex)
-                    {
-                        ScriptHelper.AlertRefresh(ex.Message);
-                        throw;
-                    }
-                    ScriptHelper.AlertRedirect("更新成功", "/Comment/Edit.aspx?id=" + answer.QId);
+            Ep_Answer answer = new Ep_Answer();
+            if (hidAnsId.Value != null && hidAnsId.Value != "")
+            {
+                //编辑
+                int aId = Convert.ToInt32(hidAnsId.Value);
 
-                }
-                else
+                answer = bllAns.GetModel(aId);
+                try
                 {
-                    //新增
-                    answer.QId = Convert.ToInt32(Request.QueryString["id"]);
                     answer.AContent = txtAnswer.Value;
                     answer.ATime = DateTime.Now;
-                    try
-                    {
-                        bllAns.Add(answer);
-                    }
-                    catch (Exception ex)
-                    {
-                        ScriptHelper.AlertRefresh(ex.Message);
-                        throw;
-                    }
-                    ScriptHelper.AlertRedirect("回复成功", "/Comment/Edit.aspx?id=" + answer.QId);
+                    bllAns.Update(answer);
                 }
+                catch (Exception ex)
+                {
+                    ScriptHelper.AlertRefresh(ex.Message);
+                    throw;
+                }
+                ScriptHelper.AlertRedirect("更新成功", "/Comment/Edit.aspx?id=" + answer.QId);
+
             }
+            else
+            {
+                //新增
+                answer.QId = Convert.ToInt32(Request.QueryString["id"]);
+                answer.AContent = txtAnswer.Value;
+                answer.ATime = DateTime.Now;
+                try
+                {
+                    bllAns.Add(answer);
+                }
+                catch (Exception ex)
+                {
+                    ScriptHelper.AlertRefresh(ex.Message);
+                    throw;
+                }
+                ScriptHelper.AlertRedirect("回复成功", "/Comment/Edit.aspx?id=" + answer.QId);
+            }
+            //}
         }
     }
 }

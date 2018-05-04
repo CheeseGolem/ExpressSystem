@@ -21,6 +21,7 @@ namespace Express.Model
 		private DateTime? _gettime;
 		private string _getcode;
 		private string _location;
+        private string _receivephone;
         /// <summary>
         /// 
         /// </summary>
@@ -109,8 +110,16 @@ namespace Express.Model
 			set{ _location=value;}
 			get{return _location;}
 		}
-		#endregion Model
+        /// <summary>
+		/// 
+		/// </summary>
+		public string ReceivePhone
+        {
+            set { _receivephone = value; }
+            get { return _receivephone; }
+        }
+        #endregion Model
 
-	}
+    }
 }
 

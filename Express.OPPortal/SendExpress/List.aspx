@@ -38,7 +38,7 @@
         <tr>
             <th>收件人姓名</th>
             <th>收件人手机</th>
-            <th>收件人地址</th>
+            <th style="width:100px">收件人地址</th>
             <th>寄件人姓名</th>
             <th>寄件人手机</th>
             <th>状态</th>

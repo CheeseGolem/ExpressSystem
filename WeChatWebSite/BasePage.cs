@@ -59,7 +59,7 @@ namespace WeChatWebSite
             {
                 var DeBugOpenid = ConfigurationManager.AppSettings["wx_debugOpenid"];
                 System.Web.HttpContext.Current.Session[WeiXinConfigBase.OpenidKey] = DeBugOpenid;
-                RefreshAccount(DeBugOpenid);
+                //RefreshAccount(DeBugOpenid);
             }
         }
 

@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WeChatWebSite {
+namespace WeChatWebSite.ExpressQuery {
     
     
     public partial class ExpressQuery {

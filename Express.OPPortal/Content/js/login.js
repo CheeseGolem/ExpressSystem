@@ -94,7 +94,7 @@ function login() {
                 $('.tip').html(data.Msg);
                 refreshCaptcha($('#imgCaptcha'));
             } else {
-                window.location.href = '/Index.aspx';
+                window.location.href = '/ExpressInfo/List.aspx';
             }
         }//相应成功的回调函数
     });

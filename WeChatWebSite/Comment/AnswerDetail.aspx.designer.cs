@@ -7,36 +7,36 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WeChatWebSite.UserBind {
+namespace WeChatWebSite.Comment {
     
     
-    public partial class UserBind {
+    public partial class AnswerDetail {
         
         /// <summary>
-        /// tb_name 控件。
+        /// lblATime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_name;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblATime;
         
         /// <summary>
-        /// phone 控件。
+        /// lblQContent 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl phone;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblQContent;
         
         /// <summary>
-        /// vcode 控件。
+        /// rptAnswer 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl vcode;
+        protected global::System.Web.UI.WebControls.Repeater rptAnswer;
     }
 }

@@ -39,29 +39,6 @@ namespace Express.OPPortal.ExpressInfo
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)//AlternatingItem 间隔行
             {
-                ////在当前行中查询指定控件
-                //Label lblStatus = e.Item.FindControl("lblStatus") as Label;
-                ////获取控件中的文本
-                //string strExpressStatus = lblStatus.Text;//用户状态值
-                ////转换枚举
-                //ExpressStatus enumExpressStatus = (ExpressStatus)Enum.Parse(typeof(ExpressStatus), strExpressStatus);
-                ////获取枚举描述
-                //strExpressStatus = Convert.ToInt32(strExpressStatus).GetDescription<ExpressStatus>();
-                ////将Label控件的文本重新赋值
-                //lblStatus.Text = strExpressStatus;
-                ////根据用户状态设置前景色
-                //switch (enumExpressStatus)
-                //{
-                //    case ExpressStatus.TimeOut:
-                //        lblStatus.ForeColor = System.Drawing.Color.Red;
-                //        break;
-                //    case ExpressStatus.Received:
-                //        lblStatus.ForeColor = System.Drawing.Color.Green;
-                //        break;
-                //    default:
-                //        break;
-                //}
-
                 LinkButton lbtnStatus = e.Item.FindControl("lbtnStatus") as LinkButton;
                 //获取控件中的文本
                 string strExpressStatus = lbtnStatus.Text;//用户状态值
@@ -90,8 +67,6 @@ namespace Express.OPPortal.ExpressInfo
                 //获取控件中的文本
                 int strUserId = Convert.ToInt32(lblUserId.Text);
                 //将Label控件的文本重新赋值
-                //if (!string.IsNullOrWhiteSpace(strUserId))
-                //{
                 Ep_User model = new Ep_User();
                 model = bllUser.GetModel(strUserId);
                 if (model != null)
@@ -169,7 +144,7 @@ namespace Express.OPPortal.ExpressInfo
             }
             else if (status == "1")
             {
-                entity.Status = 2;                
+                entity.Status = 2;
             }
             else
             {
@@ -197,7 +172,7 @@ namespace Express.OPPortal.ExpressInfo
             sb.Append(" and 1=1");
             if (!string.IsNullOrWhiteSpace(strEpId) && strEpId.IsNumber())
             {
-                sb.Append(" and ExpressId= " + strEpId);
+                sb.Append(" and ExpressId like '%" + strEpId + "%'");
             }
             if (!string.IsNullOrWhiteSpace(strUsername))
             {

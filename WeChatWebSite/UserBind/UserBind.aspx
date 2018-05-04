@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WeChat.Master" AutoEventWireup="true" CodeBehind="UserBind.aspx.cs" Inherits="WeChatWebSite.UserBind" ClientIDMode="Static" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WeChat.Master" AutoEventWireup="true" CodeBehind="UserBind.aspx.cs" Inherits="WeChatWebSite.UserBind.UserBind" ClientIDMode="Static" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
@@ -88,8 +88,7 @@
             </div>
         </div>
         <div class="center weixinpadding">
-            <button onclick="Binding()" class="weui-btn weui-btn_primary">确认</button>
-            <%--<asp:Button ID="btnSave" class="weui-btn weui-btn_primary" runat="server" Text="保存" OnClick="btnSave_Click"/>--%>
+            <input type="button" onclick="Binding()" class="weui-btn weui-btn_primary" value="确认" />
         </div>
     </div>
 </asp:Content>
@@ -101,12 +100,12 @@
 
         //手机号码格式
         function checkPhone(obj) {
-            var pattern = /^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
-            if (!pattern.test(obj.val())) {
-                //alert('请输入正确的手机号码');
-                weui.alert("手机号格式错误");
-                return false;
-            }
+            //var pattern = /^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+            //if (!pattern.test(obj.val())) {
+            //    //alert('请输入正确的手机号码');
+            //    weui.alert("手机号格式错误");
+            //    return false;
+            //}
             return true;
         }
 
@@ -131,11 +130,10 @@
         //绑定事件
         var Binding = function () {
             if (checkInput()) {
-                var sex = $("#slsex").find("option:selected").text();
                 var vcode = $('#vcode').val();
                 if (vcode != "") {
                     var ajaxoption = {
-                        url: 'UserBind.ashx',
+                        url: 'UserBinding.ashx',
                         type: 'Post',
                         data: {
                             getmethod: 'GetUser',
@@ -144,18 +142,18 @@
                             phone: $phone.val()
                         },
                         error: function (result) {
-                            weui.alert("绑定失败！" + result.MsgObjectContent)
-                            setTimeout(function () {
-                                window.location.reload();
-                            }, 1500);
+                            weui.alert("绑定失败！" + result.statusText)
                         },
                         success: function (data) {
                             data = $.parseJSON(data);
                             if (data.Result) {
-                                $.alert("绑定成功");
+                                weui.alert("绑定成功");
+                                setTimeout(function () {
+                                    window.location.href = '/MyExpress/MyExpress.aspx';
+                                }, 1500);
                             }
                             else {
-                                $.alert(data.MsgObjectContent);
+                                weui.alert(data.MsgObjectContent);
                             }
 
                             //if (typeof (data.Result) == "undefined") {
@@ -199,23 +197,26 @@
         //发送手机验证码
         var getCode = function (obj) {
             if (checkInput()) {
-                var sex = $("#slsex").find("option:selected").text();
                 var ajaxoption = {
-                    url: '@Url.Action("SendPhoneSMS", "Home")',
+                    url: 'UserBinding.ashx',
                     type: 'Post',
-                    data: { bindname: $xingming.val(), bindsex: sex, idcardno: $shenfenzheng.val(), phonenumber: $phone.val() },
+                    data: {
+                        getmethod: 'SendPhoneMsg'
+                    },
                     error: function (result) {
                         weui.alert("发送失败，SeverError");
                     },
                     success: function (data) {
-                        if (!data.Result) {
-                            weui.alert(data.MsgObjectContent);
-                        } else {
-                            //发送成功
-                            //定时器开始
-                            settime(obj);
-                            weui.alert("发送成功！");
-                        }
+                        settime(obj);
+                        weui.alert("发送成功！");
+                        //if (!data.Result) {
+                        //    weui.alert(data.MsgObjectContent);
+                        //} else {
+                        //    //发送成功
+                        //    //定时器开始
+                        //    settime(obj);
+                        //    weui.alert("发送成功！");
+                        //}
                     }
                 };
 

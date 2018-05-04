@@ -72,7 +72,7 @@ namespace Express.OPPortal.ExpressInfo
             //{
             modelUser = bllUser.GetModel(model.UserId);
             txtUserName.Text = modelUser.Name.ToString();
-            txtPhone.Text = modelUser.Phone.ToString();
+            txtPhone.Text = model.ReceivePhone;
             //}                        
 
             ViewState["id"] = model.ID;//将原数据保存在隐藏域中
@@ -104,9 +104,9 @@ namespace Express.OPPortal.ExpressInfo
                 else//新增
                 {
                     //model.ID = Guid.NewGuid().ToString();
-                    model.ArrivalTime = DateTime.Now;
+                    model.ArrivalTime = DateTime.Now;                    
                     Random random = new Random();
-                    model.GetCode = random.Next(0, 999999).ToString("D6");
+                    model.GetCode = random.Next(0, 999999).ToString("D6");                    
                     Ep_User modelUser = new Ep_User();
                     if (!bllUser.Exists(model.UserId))
                     {
@@ -114,6 +114,7 @@ namespace Express.OPPortal.ExpressInfo
                         {
                             //modelUser.UserId = Guid.NewGuid().ToString();                           
                             modelUser.Phone = txtPhone.Text;
+                            model.ReceivePhone = txtPhone.Text;
                             bllUser.Add(modelUser);
                             model.UserId = bllUser.GetModelList("").Where(o => o.Phone == modelUser.Phone).ToList()[0].UserId;
                             //model.UserId = modelUser.UserId;

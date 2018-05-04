@@ -66,7 +66,7 @@
                         <asp:Label ID="lblUserId" runat="server" Text='<%#Eval("UserId") %>'></asp:Label>
                     </td>
                     <td>
-                        <asp:Label ID="lblPhone" runat="server" Text='<%#Eval("SendPhone")%>'></asp:Label>
+                        <asp:Label ID="lblPhone" runat="server" Text='<%#Eval("ReceivePhone")%>'></asp:Label>
                     </td>
                     <td>
                         <%--<asp:Label ID="lblStatus" runat="server" Text='<%#Eval("Status") %>'></asp:Label>--%>

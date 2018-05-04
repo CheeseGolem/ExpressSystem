@@ -30,6 +30,18 @@ namespace Express.OPPortal.ExpressInfo
             }
         }
 
+        public void GetPhone(HttpContext context)
+        {
+            string strECode = context.Request["ecode"];
+            string sqlWhere = " ExpressCode='" + strECode + "'";
+
+            VirtualExpressBLL bllVE = new VirtualExpressBLL();
+            VirtualExpress entityVE = new VirtualExpress();
+            entityVE = bllVE.GetModelList(sqlWhere).ToList()[0];
+
+            context.Response.Write(JsonHelper.Serialize(entityVE));
+        }
+
         public void GetUser(HttpContext context)
         {
             string strPhone = context.Request["phone"];

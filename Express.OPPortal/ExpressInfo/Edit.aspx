@@ -2,12 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="right" runat="server">    
+<asp:Content ID="Content2" ContentPlaceHolderID="right" runat="server">
     <table class="table">
         <tr>
             <th>快递单号：</th>
             <td>
-                <asp:TextBox ID="txtExpressId" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtExpressId" CssClass="form-control" runat="server" onblur="GetPhone()"></asp:TextBox>
                 <%--非空验证--%>
                 <asp:RequiredFieldValidator ID="rfvExpressId" runat="server" ErrorMessage="*快递单号必填" ForeColor="Red" Display="Dynamic" ControlToValidate="txtExpressId"></asp:RequiredFieldValidator>
             </td>
@@ -39,8 +39,8 @@
         </tr>
         <tr>
             <th></th>
-            <td>             
-                <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="保存" OnClick="btnSave_Click"/>
+            <td>
+                <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="保存" OnClick="btnSave_Click" />
                 &nbsp;
                 <input type="button" class="btn btn-cancel" value="取消" onclick="javascript: history.go(-1);" />
             </td>
@@ -53,7 +53,22 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="foot" runat="server">
     <script type="text/javascript">      
-        function GetUser() {            
+        function GetPhone() {
+            $.ajax({
+                url: 'ExpressInfo.ashx',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    getmethod: "GetPhone",
+                    ecode: $('#txtExpressId').val()
+                },
+                success: function (obj) {
+                    $('#txtPhone').val(obj.ReceivedPhone);                    
+                }
+            })
+        }
+
+        function GetUser() {
             //发送AJAX请求
             $.ajax({
                 url: 'ExpressInfo.ashx',
@@ -61,7 +76,7 @@
                 dataType: 'json',
                 data: {
                     getmethod: "GetUser",
-                    phone: $('#txtPhone').val()                    
+                    phone: $('#txtPhone').val()
                 },
                 success: function (obj) {
                     $('#txtUserName').val(obj[0].Name);

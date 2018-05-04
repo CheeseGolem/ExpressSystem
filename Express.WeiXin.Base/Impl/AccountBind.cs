@@ -33,6 +33,7 @@ namespace WeiXin.Base.Impl
                 user = GetEp_userByWeiXin(openid);
                 user.Name = bindname;
                 user.Phone = phone;
+                user.CreateTime = DateTime.Now;
 
                 msg.Result = bllUser.Add(user) > 0;
             }
@@ -42,21 +43,6 @@ namespace WeiXin.Base.Impl
             }
 
             string strWhere = " and openid='" + openid + "' ";
-            //var UserList = bllUser.GetModelList(strWhere); 
-            //获取微信信息
-            //if (UserList.Count == 0)//判断本地是从存关注者信息
-            //{
-            //    user = GetEp_userByWeiXin(openid);
-            //    user.Name = bindname;
-            //    user.Phone = phone;
-            //    bllUser.Add(user);
-            //    //user_id = user.Id;
-            //    //sqlList.Add(Pub_userDal.InsertSQL(user));
-            //}
-            //else
-            //{
-            //    //user_id = UserList.FirstOrDefault().Id;
-            //}
 
             return msg;
         }

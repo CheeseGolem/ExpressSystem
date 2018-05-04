@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WeChatWebSite
+namespace WeChatWebSite.ExpressQuery
 {
-    public partial class ExpressQuery : System.Web.UI.Page
+    public partial class ExpressQuery : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

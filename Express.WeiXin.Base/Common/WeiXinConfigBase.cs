@@ -36,6 +36,11 @@ namespace Express.WeiXin
         public static string AccountEntityKey = "_Accounts";
 
         /// <summary>
+        /// 短信验证码
+        /// </summary>
+        public static string VcodeKey = "_Vcode";
+
+        /// <summary>
         /// 消息重复发送次数
         /// </summary>
         public static string SendTimes = ConfigurationManager.AppSettings["SendTimes"];

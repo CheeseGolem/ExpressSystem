@@ -38,7 +38,7 @@
         <tr>            
             <td colspan="2">
                 <textarea id="txtAnswer" runat="server" rows="4" maxlength="300"></textarea>     
-                <asp:RequiredFieldValidator ID="rfvAnswer" runat="server" ErrorMessage="*请输入回复" ForeColor="Red" Display="Dynamic" ControlToValidate="txtAnswer"></asp:RequiredFieldValidator>
+                <%--<asp:RequiredFieldValidator ID="rfvAnswer" runat="server" ErrorMessage="*请输入回复" ForeColor="Red" Display="Dynamic" ControlToValidate="txtAnswer"></asp:RequiredFieldValidator>--%>
             </td>
             <td style="padding-top:30px;">
                 <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="保存" OnClick="btnSave_Click" />

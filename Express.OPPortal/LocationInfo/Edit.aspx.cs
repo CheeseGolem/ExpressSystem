@@ -37,19 +37,39 @@ namespace Express.OPPortal.LocationInfo
             ddlShelfType.Items.Add(new ListItem("贵重件", "2"));
             ddlShelfType.Items.Add(new ListItem("大体积", "3"));
             //设置默认选中项
-            ddlShelfType.SelectedValue = "1";
+            ddlShelfType.SelectedValue = "1";            
 
-            for (int i = 1; i <= 20; i++)
-            {
-                ddlShelf.Items.Add(new ListItem(i.ToString("D2"), i.ToString()));
-            }
-            ddlShelf.SelectedValue = "1";
+            List<Ep_Shelf> listShelfEntity = new List<Ep_Shelf>();
+            listShelfEntity = bllShelf.GetModelList("");
 
-            for (int i = 1; i <= 20; i++)
+            List<string> listShelf = new List<string>();
+            for (int i = 1; i <= 10; i++)
             {
-                ddlLocation.Items.Add(new ListItem(i.ToString("D2"), i.ToString()));
+                listShelf.Add(i.ToString("D2"));
+                //ddlShelf.Items.Add(new ListItem(i.ToString("D2"), i.ToString()));
             }
-            ddlLocation.SelectedValue = "1";
+            foreach (var item in listShelfEntity)
+            {
+                listShelf.Remove(item.Location);
+            }
+            //ddlShelf.SelectedValue = "1";
+            ddlShelf.DataSource = listShelf;
+            ddlShelf.DataBind();
+
+            List<string> listLocation = new List<string>();
+            for (int i = 1; i <= 10; i++)
+            {
+                
+                listLocation.Add(i.ToString("D2"));
+                //ddlLocation.Items.Add(new ListItem(i.ToString("D2"), i.ToString()));
+            }
+            //foreach (var item in listShelfEntity)
+            //{
+            //    listLocation.Remove(item.Shelf);
+            //}
+            //ddlLocation.SelectedValue = "1";            
+            ddlLocation.DataSource = listLocation;
+            ddlLocation.DataBind();
         }
 
         /// <summary>

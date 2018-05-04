@@ -37,10 +37,10 @@ namespace Express.OPPortal.Ajax
             model.Status = !string.IsNullOrWhiteSpace(strUsername) ? Convert.ToInt32(strStatus) : 1;
 
             //2.0判断用户名是否存在
-            if (bllAdmin.isExistsUsername(model.Username, model.UserId))
-            {
-                AjaxHelper.WriteErrorJson("该用户已存在");
-            }
+            //if (bllAdmin.isExistsUsername(model.Username, model.UserId))
+            //{
+            //    AjaxHelper.WriteErrorJson("该用户已存在");
+            //}
 
             //3.0 更新数据
 

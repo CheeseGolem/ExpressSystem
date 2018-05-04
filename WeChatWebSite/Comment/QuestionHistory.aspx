@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WeChat.Master" AutoEventWireup="true" CodeBehind="MyExpress.aspx.cs" Inherits="WeChatWebSite.MyExpress.MyExpress" ClientIDMode="Static" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WeChat.Master" AutoEventWireup="true" CodeBehind="QuestionHistory.aspx.cs" Inherits="WeChatWebSite.Comment.QuestionHistory" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -7,23 +7,22 @@
         <div class="weui-cell">
             <img src="../Content/Images/banner.jpg" style="height: 180px; width: 100%" />
         </div>
-
-        <asp:Repeater ID="rptExpress" runat="server">
+        <asp:Repeater ID="rptQuestion" runat="server">
             <ItemTemplate>
-                <a href="../ExpressQuery/ExpressInfo.aspx?ecode=<%#Eval("ExpressId") %>">
+                <a href="AnswerDetail.aspx?qid=<%#Eval("qid") %>">
                     <div class="weui-cell">
                         <div class="weui-cell__hd" style="position: relative; margin-right: 10px;">
-                            <img src="/Content/images/Express.jpg" style="width: 50px; display: block" />
                             <%--<span class="weui-badge" style="position: absolute; top: -.4em; right: -.4em;">8</span>--%>
                         </div>
                         <div class="weui-cell__bd">
-                            <p><%#Eval("ExpressId") %></p>
-                            <p style="font-size: 13px; color: #888888;">摘要信息</p>
+                            <p><%#Eval("QContent") %></p>
+                            <p style="font-size: 13px; color: #888888;"><%#Eval("QTime") %></p>
                         </div>
                     </div>
                 </a>
             </ItemTemplate>
         </asp:Repeater>
+
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="foot" runat="server">

@@ -382,7 +382,7 @@ namespace Express.DAL
             strSql.Append("RealName=@RealName,");
             strSql.Append("Phone=@Phone,");
             strSql.Append("UserType=@UserType,");
-            strSql.Append("Status=@Status,");
+            strSql.Append("Status=@Status ");
             strSql.Append("where UserId=@UserId");
 
             //两个数组

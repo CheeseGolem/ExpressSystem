@@ -46,7 +46,7 @@
                     <a class="weui-btn weui-btn_primary" id="showTooltips" href="javascript:" onclick="sumbit();">提交</a>
                 </div>
                 <div class="weui-cell__bd">
-                    <a class="weui-btn weui-btn_u" id="showTooltips" href="#">查看历史提问</a>
+                    <a class="weui-btn weui-btn_u" id="showTooltips" href="QuestionHistory.aspx">查看历史提问</a>
                 </div>
             </div>
 
@@ -90,8 +90,8 @@
                     weui.alert("发送失败，SeverError");
                 },
                 success: function (data) {
-                    console.log(data);
-                    if (data.Result) {
+                    var obj = $.parseJSON(data);
+                    if (obj.Result) {
                         weui.alert("提交成功")
                     } else {
                         weui.alert("提交失败")
